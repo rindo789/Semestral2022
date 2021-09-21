@@ -28,9 +28,9 @@ include '../include/teach_functions.inc.php';
             </td>
             
             <td id="new_test">
-                <form action="new_test.php" method="post">
+                <form action="../include/newTest.inc.php" method="post">
                     <input type="text" name="test_name" placeholder="názov testu">
-                    <input type="submit">
+                    <input type="submit" name="newTest">
                 </form>
             </td>
             

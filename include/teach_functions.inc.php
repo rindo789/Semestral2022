@@ -17,13 +17,13 @@ function showTests($teacherId){
     }
     CloseCon($conn);
 }
-//<td><form action='show_test.php' method='post'><input type='submit' value=".$row['id_test']." name='otvor'></form></td>
+
 //vloz test do databázy este predtým ako sa bude upravovat
-function newTest($testName,$next_id)
+function newTest($testName,$teacherId)
 {
     $conn = OpenCon();
-    $stmt = $conn->prepare("INSERT INTO testy (id_test, nazov_testu) VALUES (?,?)");
-    $stmt->bind_param("is",$next_id,$testName);
+    $stmt = $conn->prepare("INSERT INTO testy (nazov_testu,ucitel_id_uci) VALUES (?,?)");
+    $stmt->bind_param("si",$testName,$teacherId);
     $stmt->execute();
 
     echo "test:". $testName . " bol vytvorený!";
@@ -31,18 +31,16 @@ function newTest($testName,$next_id)
     CloseCon($conn);
 }
 
-function TestNameReturn($test_id)
+function checkNewTestId($teacherId)
 {
-    $nazov_testu = "";
     $conn = OpenCon();
-    $stmt = $conn->prepare("SELECT nazov_testu FROM testy WHERE id_test = $test_id");
+    $stmt = $conn->prepare("SELECT MAX(id_test) AS newTestId FROM testy WHERE ucitel_id_uci = ?");
+    $stmt->bind_param("i",$teacherId);
     $stmt->execute();
     $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc()) {
-        $nazov_testu = $row['nazov_testu'];
-    }
+    $row = $result->fetch_assoc();
     CloseCon($conn);
-    return $nazov_testu;    
+    return $row['newTestId'];    
 }
 
 
