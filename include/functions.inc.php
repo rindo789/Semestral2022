@@ -1,5 +1,5 @@
 <?php
-//error pre sign up
+//errory pre sign up
 function missingInput($meno,$nick,$email,$heslo,$hesloZnova,$typ)
 {
     if (empty($meno) || empty($nick) || empty($email) || empty($heslo) || empty($hesloZnova) || empty($typ))
@@ -45,16 +45,35 @@ function existUserID($nick)
     } else return false;
 }
 
+//errory pre login
+function missingInputLogin($nick,$heslo)
+{
+    if (empty($nick) || empty($heslo))
+    {
+        return true;
+    } else return false;
+}
+
+function invalidUserIDLogin($nick)
+{
+ if (preg_match("/^[a-zA-z0-9]*$/",$nick))
+ {
+     return false;
+ } else return true;
+}
+
 //vypisanie erroru
 function errorEcho()
 {
     if (empty($_GET["error"])) exit();
     $error = $_GET["error"];
     if ($error == "missingInput") echo "<p>Nezadali ste údaj!</p>";
-    else if ($error == "invalidID") echo "<p>Zle zadany nick</p>";
+    else if ($error == "invalidID") echo "<p>Zle zadaný nick!</p>";
     else if ($error == "userExists") echo "<p>užívateľ už existuje</p>";
     else if ($error == "invalidEmail") echo "<p>Zlý email!</p>";
     else if ($error == "pwdMissmatch") echo "<p>Heslá sa nezhodujú</p>";
+    else if ($error == "signUpUserIdNotFound") echo "<p>Niečo sa stalo zle!</p>";
+    else if ($error == "pwdWrong") echo "<p>Zadali ste zlé heslo!</p>";
     else echo "<p>Úspešne ste sa registrovli!</p>";
 }
 //vytvorenie nového uzivatela
@@ -75,50 +94,33 @@ function createType($typ,$nick,$conn)
     $stmt = $conn->prepare("SELECT id_uzivatel FROM uzivatelia WHERE nickname = '$nick'");
     $stmt->execute();
     $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc()) {
-        if (empty($row['id_uzivatel']))
-        {
-            $stmt->execute();
-            $result = $stmt->get_result();
-            continue;
-        }
-        $userID = $row['id_uzivatel'];
+    if (mysqli_num_rows($result)==0)
+    {
+        CloseCon($conn);
+        header("location: ../index/signup.php?error=signUpUserIdNotFound");
+        exit();
     }
+    $row = $result->fetch_assoc();
+    $userID = $row['id_uzivatel'];
+    
     if ($typ == "Teacher") {
         $stmt = $conn->prepare("INSERT INTO ucitel (uzivatelia_id_uzivatel) VALUES (?)");
     } else if ($typ == "Student") {
         $stmt = $conn->prepare("INSERT INTO student (user_student_id ) VALUES (?)");
-    }
+    } else $stmt = $conn->prepare("INSERT INTO admin (user_admin_id ) VALUES (?)");
     
     $stmt->bind_param("i",$userID);
     $stmt->execute();
-}
-
-//errory pre login
-function missingInputLogin($nick,$heslo)
-{
-    if (empty($nick) || empty($heslo))
-    {
-        return true;
-    } else return false;
-}
-
-function invalidUserIDLogin($nick)
-{
- if (preg_match("/^[a-zA-z0-9]*$/",$nick))
- {
-     return false;
- } else return true;
 }
 
 //prihlasenie uzivatela
 function loginUser ($nick,$heslo)
 {
     $conn = OpenCon();
-    $stmt = $conn->prepare("SELECT id_uzivatel ,nickname,heslo FROM uzivatelia WHERE nickname = '$nick'");
+    $stmt = $conn->prepare("SELECT id_uzivatel ,nickname,heslo FROM uzivatelia WHERE nickname = ?");
+    $stmt->bind_param("s",$nick);
     $stmt->execute();
     $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
     
     if (mysqli_num_rows($result)==0)
     {
@@ -126,11 +128,12 @@ function loginUser ($nick,$heslo)
         header("location: ../index/login.php?error=invalidID");
         exit();
     }
+    $row = $result->fetch_assoc();
     $checkHeslo = password_verify($heslo,$row["heslo"]);
     if ($checkHeslo == false)
     {
         CloseCon($conn);
-        header("location: ../index/login.php?error=pwdMissmatch");
+        header("location: ../index/login.php?error=pwdWrong");
         exit(); 
     }
     session_start();
@@ -141,10 +144,11 @@ function loginUser ($nick,$heslo)
 
 function checkUserType(){
     session_start();
-    $conn=OpenCon();    
+    $conn = OpenCon();    
 
     //ak je uzivatel ucitel
-    $stmt = $conn->prepare("SELECT id_uci FROM ucitel WHERE uzivatelia_id_uzivatel = ".$_SESSION['sessionUID']);
+    $stmt = $conn->prepare("SELECT id_uci FROM ucitel WHERE uzivatelia_id_uzivatel = ?");
+    $stmt->bind_param("i",$_SESSION['sessionUID']);
     $stmt->execute();
     $result = $stmt->get_result();
     if (mysqli_num_rows($result)==1)

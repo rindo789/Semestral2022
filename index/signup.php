@@ -19,8 +19,7 @@
         <input type="password" placeholder="Repeat Password" name="passWrdRep">
         <p>Zvolte typ užívatela</p>
         <select name="userType">
-            <option default></option>
-            <option>Student</option>
+            <option default>Student</option>
             <option>Teacher</option>
             <option>Admin</option>
         </select>
