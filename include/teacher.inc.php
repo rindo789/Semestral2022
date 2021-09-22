@@ -18,5 +18,12 @@ if ($state == "delete")
 {
     TeacherDeleteTest($testId);
     header("location: ../index/teacher.php");
+    exit();
+}
+if ($state == "show")
+{
+    loadTestTeacher($testId);
+    header("location: ../include/editTest.inc.php");
+    exit();
 }
 ?>

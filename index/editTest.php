@@ -15,10 +15,10 @@ session_start();
         <script src="../js/create16.js"></script>
     
     <form action='../include/newTest.inc.php' method='POST' id="test_form">
-        <?php 
+        <?php include '../include/teach_functions.inc.php';
             echo "<p>".$_SESSION["testName"]."</p>";
+            echo loadTestTeacher($_GET["testId"]);
         ?>
-        <textarea name='opis' placeholder="opis" form="test_form"></textarea> <br>
             <button type="button" onclick="CreateQuestion('one')">Jeden výber</button>
             <button type="button" onclick="CreateQuestion('multi')">Vyber mnoho</button>
             <button type="button" onclick="CreateQuestion('text')">Napis odpoved</button> <br>

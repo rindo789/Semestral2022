@@ -47,7 +47,7 @@ function checkNewTestId($teacherId)
 
 //ukladanie testu do xml
 function saveTest($testName,$testID){
-    $xml = simplexml_load_file("tests.xml");
+    $xml = simplexml_load_file("../xml/tests.xml");
 
     //vymazanie testu v xml ak tam je
     foreach($xml->test as $seg)
@@ -89,32 +89,23 @@ function saveTest($testName,$testID){
         }
     }
 
-    
-    //$topology =new SimpleXMLElement("<Topology_Configuration/>");
-    /*$xml->addChild('test');
-    $test = $xml->test;
-    $test->addAttribute('id',$i);*/
-    //$test->addChild('id',3);
-    /*$flavor=$xml->Topology_Configuration->Flavor;
-    $flavor->addChild('abc');*/
-
     $dom = new DOMDocument('1.0');
     $dom->preserveWhiteSpace = false;
     $dom->formatOutput = true;
     $dom->loadXML($xml->asXML());
-    $dom->save('tests.xml');
+    $dom->save('../xml/tests.xml');
 
     //$xml->asXML("tests.xml");    
 }
 
 //ukaz vytvorený test
 function loadTestTeacher($testID){
-    $xml = simplexml_load_file("tests.xml");
+    $xml = simplexml_load_file("../xml/tests.xml");
     $qType = "";
+    $returnString = "";
     foreach ($xml->test as $test) {
         if ($test->id == $testID){
-            echo    $test->name."<br>
-                    <textarea>".$test->description."</textarea>";
+            $returnString = $returnString."<textarea name='opis' placeholder='opis' form='test_form'>".$test->description."</textarea>";
             foreach ($test->question as $question){
                 
                 if ($question->type == "radio")
@@ -128,14 +119,15 @@ function loadTestTeacher($testID){
                 else {
                     $qType = "text";
                 }
-                echo "<script type='text/javascript'>CreateQuestionShow('".$qType."','".$question->questionName."');</script>";
+                $returnString = $returnString. "<script type='text/javascript'>CreateQuestionShow('".$qType."','".$question->questionName."');</script>";
                 
                 foreach ($question->option as $option){
-                    echo "<script type='text/javascript'>CreateOptionShow('".$qType."','".$option->optionName."','".$option->correct."');</script>";
+                    $returnString = $returnString. "<script type='text/javascript'>CreateOptionShow('".$qType."','".$option->optionName."','".$option->correct."');</script>";
                 }
             }
         }
     }
+    return $returnString;
 }
 
 //vymaz test zo zoznamu testov
@@ -147,7 +139,7 @@ function TeacherDeleteTest($testID)
     $stmt->execute();
     CloseCon($conn);
 
-    /*$xml = simplexml_load_file("tests.xml");
+    $xml = simplexml_load_file("../xml/tests.xml");
 
     foreach($xml->test as $seg)
     {
@@ -161,6 +153,7 @@ function TeacherDeleteTest($testID)
     $dom->preserveWhiteSpace = false;
     $dom->formatOutput = true;
     $dom->loadXML($xml->asXML());
-    $dom->save('tests.xml');    */
+    $dom->save('../xml/tests.xml');
 }
+
 ?>
