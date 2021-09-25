@@ -101,33 +101,63 @@ function saveTest($testName,$testID){
 //ukaz vytvorený test
 function loadTestTeacher($testID){
     $xml = simplexml_load_file("../xml/tests.xml");
+    $qCounter = 0;
+    $oCounter = 0;
     $qType = "";
     $returnString = "";
     foreach ($xml->test as $test) {
         if ($test->id == $testID){
-            $returnString = $returnString."<textarea name='opis' placeholder='opis' form='test_form'>".$test->description."</textarea>";
+            $returnString = $returnString.
+            "<textarea name='opis' placeholder='opis' form='test_form'>".$test->description."</textarea>";
+            //ukazanie otazky
             foreach ($test->question as $question){
+                $qCounter++;
+
+                $returnString = $returnString.
+                "<fieldset id='fieldset".$qCounter."'>
+                <input type='text' placeholder='Polož otázku' name='test[".$qCounter."][QuestionText]' value='".$question->questionName."'><br>";
                 
-                if ($question->type == "radio")
+                //ukazanie moznosti v otazke
+                if($question->type == "checkbox")
                 {
-                    $qType = "one";
+                    foreach ($question->option as $option){
+                        $oCounter++;
+                        $returnString = $returnString.
+                        "<input type='checkbox' name='test[".$qCounter."][moznost][correct".$oCounter."]'";
+                        if ($option->correct == "yes") $returnString = $returnString." checked>";
+                        else $returnString = $returnString.">";
+                        
+                        $returnString = $returnString."<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
+                    }  
+                    $returnString = $returnString."<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>";
+                    $oCounter = 0;
+                } else if ($question->type == "text") {
+                        foreach ($question->option as $option){
+                        $oCounter++;
+                        $returnString = $returnString."<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
+                    }
+                    $returnString = $returnString."<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>";
+                    $oCounter = 0;
+                } else {
+                    foreach ($question->option as $option){
+                        $oCounter++;
+                        $returnString = $returnString.
+                        "<input type=".$question->type." name='test[".$qCounter."][moznost][correct]'";
+                        if ($option->correct == "yes") $returnString = $returnString."checked>";
+                        else $returnString = $returnString.">";
+                        
+                        $returnString = $returnString."<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
+                    } 
+                    $returnString = $returnString."<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>";
+                    $oCounter = 0; 
+                    
                 }
-                else if ($question->type == "checkbox")
-                {
-                    $qType = "multi";
-                }
-                else {
-                    $qType = "text";
-                }
-                $returnString = $returnString. "<script type='text/javascript'>CreateQuestionShow('".$qType."','".$question->questionName."');</script>";
-                
-                foreach ($question->option as $option){
-                    $returnString = $returnString. "<script type='text/javascript'>CreateOptionShow('".$qType."','".$option->optionName."','".$option->correct."');</script>";
-                }
+
+                $returnString = $returnString."</fieldset>";
             }
         }
     }
-    return $returnString;
+    echo $returnString;
 }
 
 //vymaz test zo zoznamu testov

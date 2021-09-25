@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <test>
-    <id>9</id>
+    <id>19</id>
     <name>a</name>
-    <description/>
+    <description>opis</description>
     <question>
       <questionName>a</questionName>
-      <type/>
+      <type>radio</type>
+      <option>
+        <optionName>b</optionName>
+        <correct>yes</correct>
+      </option>
       <option>
         <optionName>c</optionName>
         <correct>no</correct>
       </option>
+      <option>
+        <optionName>d</optionName>
+        <correct>no</correct>
+      </option>
     </question>
     <question>
-      <questionName>b</questionName>
-      <type/>
+      <questionName>e</questionName>
+      <type>checkbox</type>
       <option>
-        <optionName>a</optionName>
+        <optionName>f</optionName>
+        <correct>yes</correct>
+      </option>
+      <option>
+        <optionName>g</optionName>
+        <correct>yes</correct>
+      </option>
+      <option>
+        <optionName>h</optionName>
+        <correct>yes</correct>
+      </option>
+    </question>
+    <question>
+      <questionName>i</questionName>
+      <type>text</type>
+      <option>
+        <optionName>j</optionName>
         <correct>no</correct>
       </option>
     </question>
