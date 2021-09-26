@@ -20,11 +20,11 @@ include '../include/teach_functions.inc.php';
             <th>Delete</th>
         </tr>
         <?php
-            showTests($_SESSION["sessionTID"]);
+            showTests($_SESSION["TID"]);
         ?>
         <tr>
             <td colspan="4" id="new_test_button">
-                <button onclick="new_testicles()">nový test</button>
+                <button onclick="new_test()">nový test</button>
             </td>
             
             <td id="new_test">
@@ -35,7 +35,7 @@ include '../include/teach_functions.inc.php';
             </td>
             
             <script>
-                function new_testicles() 
+                function new_test() 
                 {
                     document.getElementById('new_test').colSpan = "4";
                     document.getElementById('new_test').style.display = 'table-cell';

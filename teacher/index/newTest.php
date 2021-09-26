@@ -12,7 +12,7 @@ session_start();
 </head>
 <body>
         
-        <script src="../js/create20.js"></script>
+        <script src="../../js/create20.js"></script>
     
     <form action='../include/newTest.inc.php' method='POST' id="test_form">
         <?php 

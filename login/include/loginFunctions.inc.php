@@ -137,8 +137,8 @@ function loginUser ($nick,$heslo)
         exit(); 
     }
     session_start();
-    $_SESSION["sessionNick"] = $row["nickname"];
-    $_SESSION["sessionUID"] = $row["id_uzivatel"];
+    $_SESSION["Nick"] = $row["nickname"];
+    $_SESSION["UID"] = $row["id_uzivatel"];
     CloseCon($conn);    
 }
 
@@ -148,17 +148,33 @@ function checkUserType(){
 
     //ak je uzivatel ucitel
     $stmt = $conn->prepare("SELECT id_uci FROM ucitel WHERE uzivatelia_id_uzivatel = ?");
-    $stmt->bind_param("i",$_SESSION['sessionUID']);
+    $stmt->bind_param("i",$_SESSION['UID']);
     $stmt->execute();
     $result = $stmt->get_result();
+
+    $stmt1 = $conn->prepare("SELECT id_student FROM student WHERE user_student_id = ?");
+    $stmt1->bind_param("i",$_SESSION['UID']);
+    $stmt1->execute();
+    $result1 = $stmt1->get_result();
+
+
     if (mysqli_num_rows($result)==1)
     {
-        CloseCon($conn);
         $row = $result->fetch_assoc();
-        $_SESSION["sessionTID"] = $row["id_uci"];
-        header("location: ../index/teacher.php");
+        CloseCon($conn);
+        $_SESSION["TID"] = $row["id_uci"];
+        header("location: ../../teacher/index/teacher.php");
         exit();
-    } else {
+    } 
+    else if (mysqli_num_rows($result1)==1)
+    {
+        $row = $result->fetch_assoc();
+        CloseCon($conn);
+        $_SESSION["SID"] = $row["id_student"];
+        header("location: ../../student/index/student.php");
+        exit();
+    }
+    else {
         header("location: ../index/login.php?error=userNotIdent");
         exit();
     }

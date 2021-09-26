@@ -4,8 +4,8 @@ if (isset($_POST["submit"]))
     $nick = $_POST["userId"];
     $heslo = $_POST["passWrd"];
 
-    require_once "dbh.inc.php";
-    require_once "functions.inc.php";
+    require_once "../../main/dbh.inc.php";
+    require_once "loginFunctions.inc.php";
 
     if (missingInputLogin($nick,$heslo) !== false)
     {

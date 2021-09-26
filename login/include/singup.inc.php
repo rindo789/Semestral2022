@@ -9,7 +9,7 @@ if (isset($_POST["submit"]))
     $typ = $_POST["userType"];
 
     require_once "dbh.inc.php";
-    require_once "functions.inc.php";
+    require_once "loginFunctions.inc.php";
 
     if (missingInput($meno,$nick,$email,$heslo,$hesloZnova,$typ) !== false)
     {
@@ -38,7 +38,7 @@ if (isset($_POST["submit"]))
     }
 
     createUser($meno,$nick,$email,$heslo,$typ);
-    header("location: ../index/index.html");
+    header("location: ../index/login.php");
 }
 else
 {

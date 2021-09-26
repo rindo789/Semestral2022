@@ -1,5 +1,5 @@
 <?php
-require_once "dbh.inc.php";
+require_once "../../main/dbh.inc.php";
 //vypíš všetky testy v teacher.php
 function showTests($teacherId){
     $conn = OpenCon();
@@ -11,7 +11,7 @@ function showTests($teacherId){
     while ($row = $result->fetch_assoc()) {
         echo "<tr><td>".$row['id_test']."</td>
         <td>".$row['nazov_testu']."</td>
-        <td><a href='editTest.php?testId=".$row['id_test']."&state=show'>Ukáž</a></td>
+        <td><a href='../include/teacher.inc.php?testId=".$row['id_test']."&state=show'>Ukáž</a></td>
         <td><a href='../include/teacher.inc.php?testId=".$row['id_test']."&state=delete'>Zmaž</a></td>
         </tr>";
     }
@@ -40,14 +40,13 @@ function checkNewTestId($teacherId)
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
     CloseCon($conn);
+
     return $row['newTestId'];    
 }
 
-
-
 //ukladanie testu do xml
 function saveTest($testName,$testID){
-    $xml = simplexml_load_file("../xml/tests.xml");
+    $xml = simplexml_load_file("../../xml/tests.xml");
 
     //vymazanie testu v xml ak tam je
     foreach($xml->test as $seg)
@@ -93,17 +92,16 @@ function saveTest($testName,$testID){
     $dom->preserveWhiteSpace = false;
     $dom->formatOutput = true;
     $dom->loadXML($xml->asXML());
-    $dom->save('../xml/tests.xml');
+    $dom->save('../../xml/tests.xml');
 
     //$xml->asXML("tests.xml");    
 }
 
 //ukaz vytvorený test
 function loadTestTeacher($testID){
-    $xml = simplexml_load_file("../xml/tests.xml");
+    $xml = simplexml_load_file("../../xml/tests.xml");
     $qCounter = 0;
     $oCounter = 0;
-    $qType = "";
     $returnString = "";
     foreach ($xml->test as $test) {
         if ($test->id == $testID){
@@ -127,16 +125,22 @@ function loadTestTeacher($testID){
                         if ($option->correct == "yes") $returnString = $returnString." checked>";
                         else $returnString = $returnString.">";
                         
-                        $returnString = $returnString."<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
+                        $returnString = $returnString.
+                        "<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
                     }  
-                    $returnString = $returnString."<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>";
+                    $returnString = $returnString.
+                    "<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>
+                    <button onclick='CreateOption('multi',this.value)' type='button' value=".$qCounter." id='more".$qCounter."'>Ďaľšia možnosť</button>";
                     $oCounter = 0;
                 } else if ($question->type == "text") {
                         foreach ($question->option as $option){
                         $oCounter++;
-                        $returnString = $returnString."<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
+                        $returnString = $returnString.
+                        "<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
                     }
-                    $returnString = $returnString."<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>";
+                    $returnString = $returnString.
+                    "<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>
+                    <button onclick='CreateOption('text',this.value)' type='button' value=".$qCounter." id='more".$qCounter."'>Ďaľšia možnosť</button>";                    
                     $oCounter = 0;
                 } else {
                     foreach ($question->option as $option){
@@ -146,14 +150,17 @@ function loadTestTeacher($testID){
                         if ($option->correct == "yes") $returnString = $returnString."checked>";
                         else $returnString = $returnString.">";
                         
-                        $returnString = $returnString."<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
+                        $returnString = $returnString.
+                        "<input type='text' placeholder='možnosť' name='test[".$qCounter."][moznost][".$oCounter."]' value='".$option->optionName."'><br>";
                     } 
-                    $returnString = $returnString."<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>";
-                    $oCounter = 0; 
-                    
+                    $returnString = $returnString.
+                    "<input type='hidden' value='".$question->type."' name='test[".$qCounter."][type]'>
+                    <button onclick='CreateOption('one',this.value)' type='button' value=".$qCounter." id='more".$qCounter."'>Ďaľšia možnosť</button>";                    
+                    $oCounter = 0;                    
                 }
-
-                $returnString = $returnString."</fieldset>";
+                $returnString = $returnString.
+                "<button type='button' value=".$qCounter." onclick='DeleteQuestion(this.value)'>Vymaž otázku</button>
+                </fieldset>";
             }
         }
     }
@@ -169,7 +176,7 @@ function TeacherDeleteTest($testID)
     $stmt->execute();
     CloseCon($conn);
 
-    $xml = simplexml_load_file("../xml/tests.xml");
+    $xml = simplexml_load_file("../../xml/tests.xml");
 
     foreach($xml->test as $seg)
     {
@@ -183,7 +190,7 @@ function TeacherDeleteTest($testID)
     $dom->preserveWhiteSpace = false;
     $dom->formatOutput = true;
     $dom->loadXML($xml->asXML());
-    $dom->save('../xml/tests.xml');
+    $dom->save("../../xml/tests.xml");
 }
 
 ?>

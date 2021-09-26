@@ -26,7 +26,7 @@
         <br>
         <input type="submit" name="submit" value="Sign Up">
     </form>
-    <?php include "../include/functions.inc.php";
+    <?php include "../include/loginFunctions.inc.php";
         errorEcho();
     ?>
 </body>

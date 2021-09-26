@@ -11,7 +11,7 @@ session_start();
     <title>Document</title>
 </head>
 <body>
-<script src="../js/create20.js"></script>
+<script src="../../js/create20.js"></script>
 
     <form action='../include/newTest.inc.php' method='POST' id="test_form">
         <button type="button" onclick="CreateQuestion('one')">Jeden výber</button>
@@ -22,8 +22,7 @@ session_start();
             <button type="button" id="real_counter" value="0" style="display: none;"></button> -->
         <button type="submit" name="saveTest">submit</button>
         <?php include '../include/teach_functions.inc.php';
-            echo "<p>".$_SESSION["testName"]."</p>";
-            $_SESSION["testIdToEdit"] = $_GET["testId"];
+            echo "<p>".$_SESSION["testName"]."</p>";            
             echo loadTestTeacher($_SESSION["testIdToEdit"]);
         ?>
         <script>showStart();</script>

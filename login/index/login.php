@@ -13,7 +13,7 @@
         <input type="text" placeholder="Password" name="passWrd">
         <input type="submit" name="submit" value="Log In">
     </form>
-    <?php include "../include/functions.inc.php";
+    <?php include "../include/loginFunctions.inc.php";
         errorEcho();
     ?>
 </body>
