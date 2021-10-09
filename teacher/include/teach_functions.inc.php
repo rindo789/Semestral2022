@@ -193,4 +193,34 @@ function TeacherDeleteTest($testID)
     $dom->save("../../xml/tests.xml");
 }
 
+//funkcia na vytvorenie novej skupiny žiakov
+function newGroup($groupName,$teacherId)
+{
+    $conn = OpenCon();
+
+    $stmt = $conn->prepare("INSERT INTO groups (group_name,teacher_id) VALUES (?,?)");
+    $stmt->bind_param("si",$groupName,$teacherId);
+    $stmt->execute();
+
+    CloseCon($conn);  
+}
+
+function showGroups($teacherId){
+    $conn = OpenCon();
+    $stmt = $conn->prepare("SELECT id_group, group_name FROM groups WHERE teacher_id = ?");
+    $stmt->bind_param("i",$teacherId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    //vytvor tlacidla na vymazanie a ukazanie v studentList.php
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr><td>".$row['id_group']."</td>
+        <td>".$row['group_name']."</td>
+        <td><a href='../include/newGroup.php'>Ukáž</a></td>
+        <td><a href='../include/newGroup.php'>Zmaž</a></td>
+        </tr>";
+    }
+    CloseCon($conn);
+}
+
+
 ?>

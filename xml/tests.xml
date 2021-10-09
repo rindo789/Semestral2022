@@ -29,4 +29,49 @@
       </option>
     </question>
   </test>
+  <test>
+    <id>22</id>
+    <name>test2</name>
+    <description>toto je test 2</description>
+    <question>
+      <questionName>2+2</questionName>
+      <type>radio</type>
+      <option>
+        <optionName>4</optionName>
+        <correct>yes</correct>
+      </option>
+      <option>
+        <optionName>5</optionName>
+        <correct>no</correct>
+      </option>
+      <option>
+        <optionName>6</optionName>
+        <correct>no</correct>
+      </option>
+    </question>
+    <question>
+      <questionName>3+3</questionName>
+      <type>checkbox</type>
+      <option>
+        <optionName>6</optionName>
+        <correct>yes</correct>
+      </option>
+      <option>
+        <optionName>7</optionName>
+        <correct>no</correct>
+      </option>
+      <option>
+        <optionName>8</optionName>
+        <correct>yes</correct>
+      </option>
+    </question>
+    <question>
+      <questionName>5+5</questionName>
+      <type>text</type>
+      <option>
+        <optionName>10</optionName>
+        <correct>yes</correct>
+      </option>
+    </question>
+  </test>
 </xml>
