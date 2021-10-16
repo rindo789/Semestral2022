@@ -46,6 +46,7 @@ function checkNewTestId($teacherId)
 
 //ukladanie testu do xml
 function saveTest($testName,$testID){
+    $qCounter = 0;
     $xml = simplexml_load_file("../../xml/tests.xml");
 
     //vymazanie testu v xml ak tam je
@@ -68,16 +69,21 @@ function saveTest($testName,$testID){
     //pridanie question nodu
     foreach ($_POST["test"] as $value) {
         $question = $test->addchild('question');
+        $qCounter++;
+        $question->addAttribute('qId',$qCounter);
         $question->addchild('questionName',$value["QuestionText"]);
         $question->addchild('type',$value['type']);
         
         //pridanie option a correct nodu
+        $oCounter=0;
         $correct = false;
         foreach ($value["moznost"] as $key) {
             //preskoc correct node v option zozname
             if ($key=="on") {$correct = true; continue;}
             $option = $question->addchild('option');
             $option->addchild('optionName',$key);
+            $oCounter++;
+            $option->addAttribute('oId',$oCounter);
 
             if ($correct == true){
                 $option->addchild('correct', 'yes');

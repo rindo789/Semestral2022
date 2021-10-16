@@ -12,3 +12,6 @@ th, td {
 #students{
     display: none;
 }
+fieldset p {
+    display: inline;
+}

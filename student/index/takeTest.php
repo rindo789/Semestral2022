@@ -4,7 +4,14 @@ include "../include/studentFunctions.inc.php";
 ?>
 
 <html>
-<head></head>
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../teacher/css/tstyle.css">
+    <title>Document</title>
+</head>
+</head>
 <body>
 <form action='../include/takeTest.inc.php' method='POST' id="test_form">
 
@@ -12,7 +19,7 @@ include "../include/studentFunctions.inc.php";
 loadTestStudent($_SESSION["testIdToEdit"]);
 ?>
 
-<button type="submit" name="answer">submit</button>
+<button type="submit" name="submit">submit</button>
 </form>
 
 </body>
