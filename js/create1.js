@@ -1,6 +1,10 @@
 var counter = 0;
 var real_counter = 0;
 
+function showSettings(){
+  document.getElementById("settings").style.visibility = "visible";
+}
+
 function CreateQuestion(qType) {
   //zvacsi cislo otakzky
   questionIncrement();

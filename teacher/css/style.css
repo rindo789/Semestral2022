@@ -1,0 +1,17 @@
+th, td {
+    border: solid 1px;
+    text-align: center;
+}
+
+#new_test {
+    display: none;
+}
+#new_group{
+    display: none;
+}
+#students{
+    display: none;
+}
+fieldset p {
+    display: inline;
+}

@@ -10,7 +10,7 @@
         <p>Meno</p>
         <input type="text" placeholder="Nick" name="userId">
         <p>Heslo</p>
-        <input type="text" placeholder="Password" name="passWrd">
+        <input type="password" placeholder="Password" name="passWrd">
         <input type="submit" name="submit" value="Log In">
     </form>
     <?php include "../include/loginFunctions.inc.php";
@@ -19,4 +19,5 @@
 </body>
 <footer>
 
-</footer></html>
+</footer>
+</html>

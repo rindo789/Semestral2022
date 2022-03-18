@@ -79,12 +79,12 @@ function errorEcho()
 //vytvorenie nového uzivatela
 function createUser($meno,$nick,$email,$heslo,$typ)
 {
-    $hashedHeslo = password_hash($heslo,PASSWORD_DEFAULT);
+    $hashedHeslo = password_hash($heslo, PASSWORD_DEFAULT);
     $conn = OpenCon();
     $stmt = $conn->prepare("INSERT INTO uzivatelia (nickname, meno_priezvysko,email,heslo) VALUES (?,?,?,?)");
-    $stmt->bind_param("ssss",$nick,$meno,$email,$hashedHeslo);
+    $stmt->bind_param("ssss", $nick, $meno, $email, $hashedHeslo);
     $stmt->execute();
-    createType($typ,$nick,$conn);
+    createType($typ ,$nick, $conn);
     CloseCon($conn);
 }
 //a jeho typu
@@ -107,7 +107,7 @@ function createType($typ,$nick,$conn)
         $stmt = $conn->prepare("INSERT INTO ucitel (uzivatelia_id_uzivatel) VALUES (?)");
     } else if ($typ == "Student") {
         $stmt = $conn->prepare("INSERT INTO student (user_student_id ) VALUES (?)");
-    } else $stmt = $conn->prepare("INSERT INTO admin (user_admin_id ) VALUES (?)");
+    }
     
     $stmt->bind_param("i",$userID);
     $stmt->execute();
@@ -128,6 +128,7 @@ function loginUser ($nick,$heslo)
         header("location: ../index/login.php?error=invalidID");
         exit();
     }
+    
     $row = $result->fetch_assoc();
     $checkHeslo = password_verify($heslo,$row["heslo"]);
     if ($checkHeslo == false)
@@ -168,15 +169,25 @@ function checkUserType(){
     } 
     else if (mysqli_num_rows($result1)==1)
     {
-        $row = $result->fetch_assoc();
+        $row1 = $result1->fetch_assoc();
         CloseCon($conn);
-        $_SESSION["SID"] = $row["id_student"];
+        $_SESSION["SID"] = $row1["id_student"];
         header("location: ../../student/index/student.php");
         exit();
     }
     else {
         header("location: ../index/login.php?error=userNotIdent");
         exit();
+    }
+}
+
+//check či je uzivatel prihlaseny
+function loginCheck(){
+    if (empty($_SESSION["Nick"]) || empty($_SESSION["UID"])){
+    session_unset();
+    session_destroy();
+    header("location: ../../login/index/login.php");
+    exit();
     }
 }
 

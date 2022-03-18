@@ -1,117 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <test>
-    <id>24</id>
-    <name>h</name>
-    <description>qwesasc</description>
-    <question qId="1">
-      <questionName/>
-      <type>radio</type>
-      <option oId="1">
-        <optionName/>
-        <correct>no</correct>
-      </option>
-      <option oId="2">
-        <optionName/>
-        <correct>no</correct>
-      </option>
-      <option oId="3">
-        <optionName/>
-        <correct>no</correct>
-      </option>
-    </question>
-    <question qId="2">
-      <questionName/>
-      <type>checkbox</type>
-      <option oId="1">
-        <optionName/>
-        <correct>no</correct>
-      </option>
-      <option oId="2">
-        <optionName/>
-        <correct>no</correct>
-      </option>
-      <option oId="3">
-        <optionName/>
-        <correct>no</correct>
-      </option>
-    </question>
-  </test>
-  <test>
-    <id>25</id>
-    <name>q</name>
+    <id>41</id>
+    <name>qe</name>
     <description/>
-    <question qId="1">
-      <questionName/>
-      <type>radio</type>
-      <option oId="1">
-        <optionName/>
-        <correct>no</correct>
-      </option>
-    </question>
-  </test>
-  <test>
-    <id>26</id>
-    <name>a</name>
-    <description>abc</description>
+    <group>13</group>
     <question qId="1">
       <questionName>a</questionName>
       <type>radio</type>
       <option oId="1">
-        <optionName>b</optionName>
+        <optionName>a</optionName>
         <correct>no</correct>
       </option>
       <option oId="2">
-        <optionName>c</optionName>
+        <optionName>a</optionName>
         <correct>no</correct>
       </option>
       <option oId="3">
-        <optionName>d</optionName>
-        <correct>no</correct>
-      </option>
-      <option oId="4">
-        <optionName>e</optionName>
-        <correct>no</correct>
-      </option>
-    </question>
-    <question qId="2">
-      <questionName>f</questionName>
-      <type>checkbox</type>
-      <option oId="1">
-        <optionName>g</optionName>
-        <correct>no</correct>
-      </option>
-      <option oId="2">
-        <optionName>h</optionName>
-        <correct>no</correct>
-      </option>
-      <option oId="3">
-        <optionName>i</optionName>
-        <correct>no</correct>
-      </option>
-    </question>
-    <question qId="3">
-      <questionName>j</questionName>
-      <type>radio</type>
-      <option oId="1">
-        <optionName>k</optionName>
-        <correct>no</correct>
-      </option>
-      <option oId="2">
-        <optionName>l</optionName>
-        <correct>no</correct>
-      </option>
-      <option oId="3">
-        <optionName>m</optionName>
-        <correct>no</correct>
-      </option>
-      <option oId="4">
-        <optionName>n</optionName>
-        <correct>no</correct>
-      </option>
-      <option oId="5">
-        <optionName>o</optionName>
-        <correct>no</correct>
+        <optionName>a</optionName>
+        <correct>yes</correct>
       </option>
     </question>
   </test>

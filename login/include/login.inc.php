@@ -20,11 +20,8 @@ if (isset($_POST["submit"]))
     loginUser ($nick,$heslo);
     session_start();
     checkUserType();
-}
-else
-{
+} else {
     header("location: ../index/login.php", true);
     exit();
 }
-
 ?>

@@ -8,7 +8,7 @@ if (isset($_POST["submit"]))
     $hesloZnova = $_POST["passWrdRep"];
     $typ = $_POST["userType"];
 
-    require_once "dbh.inc.php";
+    require_once "../../main/dbh.inc.php";
     require_once "loginFunctions.inc.php";
 
     if (missingInput($meno,$nick,$email,$heslo,$hesloZnova,$typ) !== false)
@@ -16,12 +16,12 @@ if (isset($_POST["submit"]))
         header("location: ../index/signup.php?error=missingInput");
         exit();
     }
-    if (invalidUserID($nick)!== false)
+    if (invalidUserID($nick) !== false)
     {
         header("location: ../index/signup.php?error=invalidID");
         exit();
     }
-    if (existUserID($nick)!== false)
+    if (existUserID($nick) !== false)
     {
         header("location: ../index/signup.php?error=userExists");
         exit();
@@ -39,6 +39,7 @@ if (isset($_POST["submit"]))
 
     createUser($meno,$nick,$email,$heslo,$typ);
     header("location: ../index/login.php");
+    exit();
 }
 else
 {
