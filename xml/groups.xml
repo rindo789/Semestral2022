@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
-  <group id="13">
-    <name>bingbong</name>
-    <students>
-      <student>24</student>
-    </students>
-  </group>
-  <group id="14">
-    <name>qwe</name>
-    <students>
-      <student>24</student>
-    </students>
-  </group>
-  <group id="15">
-    <name>hhh</name>
-    <students/>
-  </group>
   <group id="17">
     <name>ggg</name>
+    <students>
+      <student>24</student>
+    </students>
+  </group>
+  <group id="18">
+    <name>skupina1</name>
     <students>
       <student>24</student>
     </students>

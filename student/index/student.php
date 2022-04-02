@@ -37,5 +37,7 @@ loginCheck();
         ?>
     </table>
     <a href="../../login/include/singout.inc.php">Odhlásiť sa</a>
+    <a href="studentGame.php">Hra</a>
+    <a href='../include/game.inc.php?testId=43'>Ukáž</a></td>"
 </body>
 </html>

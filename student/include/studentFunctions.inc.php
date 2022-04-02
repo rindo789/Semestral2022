@@ -314,8 +314,7 @@ function checkAnsw($array, $answerId){
             }
             //najdenie údajov v teste
             //ak je otázka typ text potrebujeme nájsť jeho optionName na porovnávanie
-            if ($type == "text")
-                {
+            if ($type == "text") {
                     $checkOption = $xml->xpath("//test[id=".$_SESSION["testIdToEdit"]."]/question[@qId=".$qID."]/option[".$oID."]/optionName");
                 } else {
                     $checkOption = $xml->xpath("//test[id=".$_SESSION["testIdToEdit"]."]/question[@qId=".$qID."]/option[".$oID."]");
@@ -411,6 +410,7 @@ function scoreAns($answerId){
 
     //sprav percentualne vyhodnotenie testu a pripis do xml odpovede známku
     $sum = 0;
+    $percent = 0;
     $answerXML = $xml->xpath("//answer[@id=".$answerId."]/question");
         
         echo "<td>";
@@ -423,7 +423,7 @@ function scoreAns($answerId){
     if ($sum == 0) {
         $answerXML = $xml->xpath("//answer[@id=".$answerId."]");
         foreach ($answerXML as $answer){
-            $answer->addChild("mark","FX");
+            $percent = 0;
         }
     }else {
         $percent = ($sum*100)/count($answerXML);

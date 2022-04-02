@@ -451,12 +451,6 @@ function groupDelete($groupId){
 //vypis tabulku testov ktoré boli vykonané
 function scoreTable(){
 echo "<table>";
-echo "<tr>
-        <th>ID testu</th>
-        <th>Nazov</th>
-        <th>Datum začatia</th>
-        <th>Datum ukončenia</th>
-        </tr>";
 
 //vypis vsetky zaznamy pre naplánované testy
     $conn = OpenCon();
@@ -469,6 +463,14 @@ echo "<tr>
     $result = $stmt->get_result();
     if (mysqli_num_rows($result) != 0){        
         while ($row = $result->fetch_assoc()) {
+            echo "<tr>
+            <th>id plan</th>
+            <th>ID testu</th>
+            <th>Nazov</th>
+            <th>Datum začatia</th>
+            <th>Datum ukončenia</th>
+            </tr>";
+            
             echo "<tr>
             <td>".$row['id_hotovo']."</td>
             <td>".$row['id_test']."</td>
@@ -490,6 +492,11 @@ echo "</table>";
 function scoreAllStudents($scheduleID){
     $xml = simplexml_load_file("../../xml/answers.xml");
     $answerXML = $xml->xpath("//answer[schedule=".$scheduleID."]");
+    echo "<tr id='test'>
+            <th>Odpoved</th>
+            <th>Študent</th>
+            <th>Hodnotenie</th>
+        </tr>";
 
     foreach ($answerXML as $answer){
         $odpovedID = $answer["id"];
@@ -501,19 +508,15 @@ function scoreAllStudents($scheduleID){
         $stmt->bind_param("i", $odpovedID);
         $stmt->execute();
         $result = $stmt->get_result();
+
         if (mysqli_num_rows($result)==0){
             CloseCon($conn);
             echo "no student";
             return;
         }
+        
         $row = $result->fetch_assoc();
-        CloseCon($conn);
-
-        echo "<tr>
-            <th>Odpoved</th>
-            <th>Študent</th>
-            <th>Hodnotenie</th>
-            </tr>";
+        CloseCon($conn);        
 
         echo "<tr>
         <td>".$odpovedID."</td>
