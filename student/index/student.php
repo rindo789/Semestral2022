@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../include/studentFunctions.inc.php";
+include "../include/show_tables.php";
 include '../../login/include/loginFunctions.inc.php';
 loginCheck();
 ?>
@@ -10,7 +10,7 @@ loginCheck();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../teacher/css/tstyle.css">
+    <link rel="stylesheet" href="../css/student.css">
     <title>Študent/Testy/Hodnotenia</title>
 </head>
 <body>
@@ -38,6 +38,6 @@ loginCheck();
     </table>
     <a href="../../login/include/singout.inc.php">Odhlásiť sa</a>
     <a href="studentGame.php">Hra</a>
-    <a href='../include/game.inc.php?testId=43'>Ukáž</a></td>"
+    <a href='../include/game.inc.php?testId=45'>Ukáž</a></td>"
 </body>
 </html>

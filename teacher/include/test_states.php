@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once "../../main/dbh.inc.php";
-require_once "teach_functions.inc.php";
+require_once "test_func.php";
+require_once "group_func.php";
 
 if (empty($_SESSION["Nick"]) || empty($_SESSION["UID"]) || empty($_SESSION["TID"]))
 {
@@ -11,9 +12,7 @@ if (empty($_SESSION["Nick"]) || empty($_SESSION["UID"]) || empty($_SESSION["TID"
     exit();
 }
 
-
 $state = $_GET["state"];
-
 
 if (isset($_GET["testId"]) && isset($state)){
     $testId = $_GET["testId"];

@@ -1,5 +1,5 @@
 <?php
-header('Content-type: application/json');
+//header('Content-type: application/json');
 session_start();
 $request_json = json_decode($_POST["x"],true);
 

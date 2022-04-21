@@ -1,0 +1,169 @@
+th, td {
+  border: solid 1px;
+  text-align: center;
+}
+
+#new_test {
+  display: none;
+}
+
+#new_group {
+  display: none;
+}
+
+#students {
+  display: none;
+}
+
+fieldset p {
+  display: inline;
+}
+
+* {
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+#schedule_window {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 35%;
+  height: auto;
+  width: 25em;
+  padding: 20px;
+  z-index: 1;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: grey;
+  color: white;
+  font-size: 16pt;
+  text-align: center;
+}
+#schedule_window button {
+  border-radius: 20px;
+  border-color: rgba(128, 128, 128, 0.301);
+  box-shadow: none;
+  width: 140px;
+  height: 40px;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  margin: 10px;
+}
+#schedule_window button:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.301);
+}
+#schedule_window span {
+  right: 25px;
+  top: 15px;
+  margin: 5px;
+  position: absolute;
+  cursor: pointer;
+}
+#schedule_window #wrong_dates {
+  color: red;
+  font-weight: bold;
+  display: none;
+}
+
+#schedule_response {
+  position: fixed;
+  display: none;
+  top: 10%;
+  left: 35%;
+  height: 1em;
+  width: 25em;
+  padding: 20px;
+  z-index: 1;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: green;
+  border-radius: 1em;
+  color: white;
+  font-size: 16pt;
+  text-align: center;
+}
+#schedule_response #schedule_ok {
+  display: none;
+}
+#schedule_response #schedule_error {
+  display: none;
+}
+
+fieldset {
+  border-radius: 10px;
+}
+
+#inside {
+  font-family: "Raleway", sans-serif;
+  font-size: 20pt;
+  padding-left: 10%;
+  margin-right: 10%;
+}
+#inside h1 {
+  margin: 20px 0;
+}
+#inside button {
+  border-radius: 20px;
+  border-color: rgba(128, 128, 128, 0.301);
+  box-shadow: none;
+  width: 140px;
+  height: 60px;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+}
+#inside button:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.301);
+}
+#inside #flex_inside {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#inside #flex_inside #submit {
+  border-color: rgba(0, 248, 0, 0.342);
+  align-self: flex-end;
+}
+#inside #flex_inside button {
+  padding: 0;
+  margin: 0;
+}
+#inside fieldset button {
+  height: 40px;
+  margin-top: 20px;
+}
+
+#menu {
+  font-family: "Raleway", sans-serif;
+  font-size: 20pt;
+  background-color: skyblue;
+  padding: 10px;
+}
+#menu a {
+  padding-left: 10%;
+  color: white;
+  text-decoration: none;
+}
+#menu a:visited {
+  color: white;
+}
+#menu a:hover {
+  text-decoration: underline;
+  color: grey;
+}
+
+.correct {
+  background-color: rgba(0, 128, 0, 0.448);
+}
+
+.incorrect {
+  background-color: rgba(255, 0, 0, 0.448);
+}
+
+/*# sourceMappingURL=harrystyles.css.map */

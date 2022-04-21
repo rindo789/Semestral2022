@@ -1,7 +1,9 @@
 <?php
 
 require_once "../../main/dbh.inc.php";
-require_once "../include/studentFunctions.inc.php";
+require_once "check_test.php";
+require_once "student_check.php";
+require_once "take_test.php";
 
 session_start();
 
@@ -33,6 +35,7 @@ if (isset($_POST["submit"]))
 //pri ukázaní testu
 else if (isset($_GET["testId"])) {
     $_SESSION["testIdToEdit"] = $_GET["testId"];
+    $_SESSION["schedule"] = $_GET["schedule"];
 
     if (studentBelong("test") !== true){
         header("location: ../index/student.php?wrongStudent"); 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include '../include/teach_functions.inc.php';
+include '../include/group_func.php';
 include '../../login/include/loginFunctions.inc.php';
 session_start();
 loginCheck();

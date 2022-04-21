@@ -1,7 +1,27 @@
+//najdene vsetkych fieldsetov
 var question_list = document.getElementsByTagName("fieldset");
+//fieldset, ktorý označuje, ktorá otázka je na teraz
 var question_now;
+//pocitadlo skore
 var score = 0;
+//pocitadlo skore ktore bolo predtým
 var score_before = 0;
+//nasobitel skore
+var multyplier = 1;
+//najvacsi nasobitel
+var max_multiplier = 0;
+//pocitadlo spravnych odpovedi
+var right_answers = 0;
+//pocet spravnych odpovedi celkovo
+var max_right_answers = 0;
+//casovac
+var intervarID;
+//cas riesenia jednej otazky
+var cas = 0;
+//cas riesenie testu
+var all_time = 0;
+//najkratsi cas riesenia ulohy
+var short_time = 999;
 
 //schovaj fieldsety okrem prvého
 function hideAll (){
@@ -15,11 +35,12 @@ function hideAll (){
 //schovaj aktualnu otázku a ukaz dalsiu
 function nextQuestion(){
     for (let i = 0; i < question_list.length; i++){
-        //ak už nie je dalsia otázka tak nič nerob
+        //ak už nie je dalsia otázka tak ukáž submit button
         if (question_list[i+1] == null){
             document.getElementById("submit").hidden = false;
             document.getElementById("next").hidden = true;
-            console.log("The end");
+            clearInterval(intervarID);
+            console.log("the end");
             return;
         }
         //schovaj aktualnu otázku a ukáž dalšiu
@@ -80,8 +101,6 @@ function sendData(){
             question_created = true;
             was_checked = true;
          }
-        
-
     }
  }
 
@@ -97,7 +116,13 @@ xmlhttp.onload = function() {
     
     var responsteJSON = JSON.parse(this.responseText);
     
+    timerEnd();
+    rightCounter(responsteJSON.odpoved);
+    multyEval();
+    timeScore(responsteJSON.odpoved);
     addScore(responsteJSON.odpoved);
+    sendGameInfo();
+    timerStart();
     console.log(score);
 
 }
@@ -140,9 +165,42 @@ var number_found = false
     }    
 }
 
+//zisti kolko bolo spravnych odpovedi, na zaklade toho ukaz aky je nasobitel
+function multyEval(){
+    if (right_answers >= 6){
+        multyplier = 8
+    }else if (right_answers >= 4){
+        multyplier = 4;
+    }else if (right_answers >= 2){
+        multyplier = 2;
+    } else {
+        multyplier = 1;
+    }
+
+    if (max_multiplier < multyplier){
+        max_multiplier = multyplier;
+    }
+
+    console.log("nasobic:" + multyplier);
+    
+    document.getElementById("multyplier").innerHTML = "násobok: " + multyplier;
+}
+
+//zisti ci bolo odpoved dobre, ak ano zvys pocitadlo ak nie daj 0
+function rightCounter(odpoved){
+    if (odpoved == "yes"){
+        right_answers += 1;
+        max_right_answers += 1;
+    } else right_answers = 0;
+
+    console.log("spravne odpoveede:" + right_answers);
+    
+}
+
+//animacia na pridanie score ak odpoved bolo dobrá, ide len o 100 bodov +-
 function addScore(odpoved){
     if (odpoved == "yes"){
-        score += 100;
+        score += 100*multyplier;
     } else score -= 100;
     
     let counts=setInterval(updated);
@@ -158,4 +216,41 @@ function addScore(odpoved){
                 clearInterval(counts);
             }
         }
+}
+
+//zacni timer, timer sa skonci po 60 sekundach
+function timerStart() {
+    cas = 0;
+    intervarID = setInterval(addTime, 1000);
+
+    function addTime(){
+        if (cas == 60){
+            clearInterval(intervarID);
+        }
+        cas++;
+    }
+}
+
+function timerEnd() {
+    all_time += cas;
+    if (cas < short_time){
+        short_time = cas;
+    }
+    console.log("celkovy cas: " + (all_time/60));
+    
+    clearInterval(intervarID);
+}
+
+function timeScore(answer){
+    if (answer == "yes"){
+        score += (60-cas)*multyplier;
+    }
+}
+
+function sendGameInfo(){
+    document.getElementById("score_send").value = score;
+    document.getElementById("multiply_send").value = max_multiplier;
+    document.getElementById("full_time").value = all_time;
+    document.getElementById("short_time").value = short_time;
+    document.getElementById("max_answers").value = max_right_answers;
 }

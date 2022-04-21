@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../include/studentFunctions.inc.php";
+include "../include/show_tables.php";
 include '../../login/include/loginFunctions.inc.php';
 loginCheck();
 ?>

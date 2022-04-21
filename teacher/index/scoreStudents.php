@@ -19,14 +19,15 @@ loginCheck();
     <p>si na stránke hodnotenia >:)</p>
     <table>
         <tr>
-            <th>id plan</th>
-            <th>ID testu</th>
-            <th>Nazov</th>
-            <th>Datum začatia</th>
-            <th>Datum ukončenia</th>
+            <th>ID žiaka</th>
+            <th>Meno žiaka</th>
+            <?php echo "<th colspan=".autoColspan($_GET["schedule"]).">Odpovede</th>" ?>
+            
+            <th>Body</th>
+            <th>Známka</th>
         </tr>
         <?php
-            scoreTable();
+            scoreAllStudents($_GET["schedule"]);
         ?>
     </table>
 </body>

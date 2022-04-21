@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once "../../main/dbh.inc.php";
-require_once "teach_functions.inc.php";
+require_once "group_func.php";
+require_once "test_func.php";
 
 if (isset($_POST["newTest"])){
     $_SESSION["testName"] = $_POST["test_name"];
@@ -15,7 +16,7 @@ if (isset($_POST["newTest"])){
     
 } else if (isset($_POST["saveTest"])){
     saveTest($_SESSION["testName"],$_SESSION["testIdToEdit"]);
-    header("location: teacher.inc.php?testId=".$_SESSION["testIdToEdit"]."&state=show");
+    header("location: test_states.php?testId=".$_SESSION["testIdToEdit"]."&state=show");
     exit();
 
 } else if (isset($_POST["newGroup"])){
