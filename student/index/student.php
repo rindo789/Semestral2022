@@ -19,7 +19,7 @@ loginCheck();
         <tr>
             <th>Id</th>
             <th>Nazov</th>
-            <th>ShowX</th>
+            <th>Show</th>
         </tr>
         <?php
         showTests();
