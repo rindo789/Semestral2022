@@ -66,7 +66,7 @@ function saveGroup($studentArray){
     //pridanie skupiny študentov
     $studentXML = $groups[0]->addChild('students');
     foreach($studentArray as $students) {
-        //check ak to je iné ako čiílo
+        //check ak to je iné ako čislo
         if (!preg_match("/^[0-9]*$/",$students) || empty($students)){
             //echo "zlý input<br>";
             continue;
@@ -97,43 +97,40 @@ function saveGroup($studentArray){
 //nacitanie mien a id v editore skupín
 function loadStudents(){
     $xml = simplexml_load_file("../../xml/groups.xml");
-    $group = $xml->xpath("//group[@id=".$_SESSION["groupEdit"]."]/students");
+    $group = $xml->xpath("//group[@id=".$_SESSION["groupEdit"]."]/students/student");
     if (count($group) == 0) return;
     //zistenie viacerých mien pre studentov
-    //pridanie idčiek do stringu
-    $idstring = "";
-    //pri prve nedaj čiarku, robí to až druhé id
-    $firstout = false;
-    foreach ($group[0] as $x) {
-        if ($firstout == true) {
-            $idstring = $idstring .", ". $x;
-        }
-        else {
-            $idstring = $x;
-            $firstout = true;
-        }
+    //napln array
+    $ids=[];
+    foreach($group as $students){
+        array_push($ids, (int)$students);
     }
-    //hladanie všetkých užívateľov
+
+    //vytvor string, ktorý pripojí kolko mien študentov podla ich ID sa má vyhladat
+    //vytvor string do SQL query s niekolkymi ?
+    $otazniky = implode(",",array_fill(0, count($ids), "?"));
+    //vytvor string s parametramy pr bind parameters
+    $parameters = str_repeat("i",count($ids));
+    //zorad IDcka v array, SQL si tieto hodnoty zoraduje sám???
+    sort($ids, SORT_NUMERIC);
+
     $conn = OpenCon();
-    $sql = "SELECT meno_priezvysko from uzivatelia 
-            where id_uzivatel = (
-            SELECT user_student_id from student WHERE id_student IN ('$idstring'))";
-        if ($result = $conn->query($sql))
-        {
-            $row = $result->fetch_assoc();
-        }
+    $stmt = $conn->prepare("SELECT meno_priezvysko from uzivatelia where id_uzivatel IN 
+    ( SELECT user_student_id from student WHERE id_student IN (".$otazniky."))");
+    $stmt->bind_param($parameters, ...$ids);
+    if (!$stmt->execute()) return;    
+    $result = $stmt->get_result();
     CloseCon($conn);
 
-    //znovu pridanie inputov
-    $sCounter = 0;
-    foreach ($group[0] as $x) {
-        $sCounter++;
-        echo "<fieldset id=field".$sCounter.">";
-        echo $row["meno_priezvysko"].
-        " <input type='text' value='$x' name='student[]'> 
-        <button type='button' onClick='DeleteStudent(this.value)' value=".$sCounter.">x</button>
-        <br>";
-        echo "</fieldset>";
+    //vypíš podla poctu najdených IDcok mená a ich idecka na editovanie
+    for ($i = 0; $i<count($ids);$i++){
+        $row = $result->fetch_assoc();
+        echo "<fieldset id=field".$i.">";
+            echo $row["meno_priezvysko"].
+            " <input type='text' value='$ids[$i]' name='student[]'> 
+            <button type='button' onClick='DeleteStudent(this.value)' value=".$i.">x</button>
+            <br>";
+            echo "</fieldset>";
     }
 }
 
