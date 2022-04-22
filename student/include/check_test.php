@@ -38,6 +38,11 @@ function checkAnsw($array, $answerId){
             
             //kontrola odpovede
             foreach ($checkOption as $opt){
+                //ak šutdent neopovedal, tak daj mu automaticky odpoved zlú
+                if ((string) $option == "/*empty*/"){
+                    $option->addChild("correct", "no");
+                    continue;
+                }
                 //ak je odpoved text, porovnaj odpovede
                 //pretypuj z arrayu na string
                 if ($type == "text"){
@@ -82,27 +87,29 @@ function scoreAns($answerId){
 
         //ak je viac výberová otázka
         if ($question->type == "checkbox"){
-            //počítadlo správnych odpovedí v teste
-            $nof_correct = 0;
-            foreach($question->option as $option)
-            {
-                if ($option->correct == "yes"){
-                    $nof_correct++;
-                }
-            }
+            //najdi kolko spravnych moznosti je v otázke
+            $tp_count = $xml->xpath("//test[id=".$_SESSION["testIdToEdit"]."]/question[@qId=".$qID."]/option[correct='yes']");
+            $tp_count = (int)count($tp_count);
             //počítadlo správnych odpovedí študenta
-            $correct_student = 0;
+            $student_asnwer = 0;
             $options = $xml2->xpath("//answer[@id=".$answerId."]/question[@qId=".$qID."]/option");
             foreach($options as $correct){
                 if ($correct->correct == "yes"){
-                    $correct_student++;
+                    $student_asnwer++;
+                } else {
+                    $student_asnwer = false;
+                    break;
                 }
             }
             
-            //vypočítaj percentuálne koľko mal študent správnych odpovedí a daj do čísla (1, 0.75 atď)
+            //zisti študent vybral všetky správne možnosti a priraď mu hodnotenie za otázku
             $question_student = $xml2->xpath("//answer[@id=".$answerId."]/question[@qId=".$qID."]");
             foreach($question_student as $que){
-                $que->addChild("score", (($correct_student*100)/$nof_correct)/100);
+                if ($student_asnwer == false){
+                    $que->addChild("score", 0);
+                } else if ($tp_count == $student_asnwer){
+                    $que->addChild("score", 1);
+                }                
             }
 
         } else {

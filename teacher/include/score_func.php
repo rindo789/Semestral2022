@@ -58,10 +58,13 @@ function scoreAllStudents($scheduleID){
                 if ($question->score > 0){
                     echo "<td class='correct'>".$question["qId"].". ";
                     echo $option."</td>";
-                }else {
+                } else if ($question->score == 0){
                     echo "<td class='incorrect'>".$question["qId"].". ";
                     echo $option."</td>";
-                }                
+                }    
+                else {
+                    echo "<td>".$question["qId"]."</td>";
+                }            
             }
         }
 

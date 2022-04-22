@@ -127,8 +127,14 @@ function saveAnswer($answers, $active_test){
     //pridanie id odpovede
     $answerXml = $xml->addChild('answer');
     $answerXml->addattribute('id',$row['newAnswer']);
+
+    $testXML = $xml2->xpath("//test[id=".$_SESSION["testIdToEdit"]."]/name");
+    foreach ($testXML as $name)
+    {
+        $answerXml->addChild('name',$name);
+    }
     
-    $addname = false;
+    //$addname = false;
     //pridanie otázky
     //vkročenie do arrayu otázky
     foreach ($answers as $key => $question) {
@@ -136,14 +142,14 @@ function saveAnswer($answers, $active_test){
         $questionXml->addAttribute('qId',$key);
 
         //pridanie nazvu testu
-        if ($addname == false){
+        /*if ($addname == false){
             $testXML = $xml2->xpath("//test[id=".$_SESSION["testIdToEdit"]."]/name");
             foreach ($testXML as $name)
             {
                 $answerXml->addChild('name',$name);
             }
             $addname = true;
-        }        
+        }        */
         
         //najdi správny test, otázku a jej znenie a pridaj ho do xml odpovede
         $testXML = $xml2->xpath("//test[id=".$_SESSION["testIdToEdit"]."]/question[@qId=".$key."]/questionName");
@@ -154,29 +160,55 @@ function saveAnswer($answers, $active_test){
 
         //skontrolovat či je v arrayi na odpoved aj typ otázky, ak nie je (čo sa rovná 1) znamená to
         //že typ je text a môže sa pridať odpoveď hneď
+        $text_type = false;
         if (count($question) == 1){
             foreach ($question["moznost"] as $key => $value){
                 //ak nebola zodpovedaná otázka
                 if (empty($value)){
-                    continue;
+                    echo "text je prázdy";
+                    $text_type = true;
+                    $optionXml = $questionXml->addChild('option',"/*empty*/");
+                    $optionXml->addAttribute('oId',$key);
+                    break;
+                } else {
+                    $text_type = true;
+                    $optionXml = $questionXml->addChild('option', $value);
+                    $optionXml->addAttribute('oId',$key);
+                    break;
                 }
-                $optionXml = $questionXml->addChild('option', $value);
-                $optionXml->addAttribute('oId',$key);
             }
         }
-
-        $chosen = false;
-        //vkročenie do vybraných možností
-        //najdi, ktoré študent vybral
-        foreach ($question["moznost"] as $key => $value) {
-            if (preg_match("/correct/",$key)){
-                $chosen = true;
-                continue;
+        //kontrola či je typ text aby mohol toto vynachat
+        if ($text_type == false){
+            //skontroluj či študent odpovedal na otázku
+            $empty_asnwer = true;
+            foreach ($question["moznost"] as $key => $value) {
+                if (preg_match("/correct/",$key)){
+                    echo "študent odpovedal";
+                    $empty_asnwer = false;
+                    break;
+                }
             }
-            if ($chosen == true){
-                $optionXml = $questionXml->addChild('option', $value);
-                $optionXml->addAttribute('oId',$key);
-                $chosen = false;
+
+            $chosen = false;
+            //vkročenie do vybraných možností
+            //najdi, ktoré študent vybral
+            print_r($question["moznost"]);
+            foreach ($question["moznost"] as $key => $value) {
+                if ($empty_asnwer == true){
+                    $optionXml = $questionXml->addChild('option',"/*empty*/");
+                    $optionXml->addAttribute('oId',$key);
+                    break;
+                }
+                if (preg_match("/correct/",$key)){
+                    $chosen = true;
+                    continue;
+                }
+                if ($chosen == true){
+                    $optionXml = $questionXml->addChild('option', $value);
+                    $optionXml->addAttribute('oId',$key);
+                    $chosen = false;
+                }
             }
         }
     }
