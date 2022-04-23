@@ -1,0 +1,9 @@
+Čo má robiť admin?
+
+- vytvárať, editova´t, vymazávať a zobrazova´t  používateľov
+	- admin musí sám vytvoriť uzivatelov, ktorých chce spravovať
+	- musi obsahovat vyhladavanie, vytvorenie nového uzivatela
+- vytvára´t skupiny študentov a priradit k nim aj učitela
+	-admin musí vyberať len tých užívateľov, ktorý patria k nemu
+- vymazávať záznamy o hodnotení, spravovať testy
+	-admin môže upravova´t hodnotenia a testy, ktoré patria len privlastneným užívateľom

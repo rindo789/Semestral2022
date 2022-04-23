@@ -107,6 +107,8 @@ function createType($typ,$nick,$conn)
         $stmt = $conn->prepare("INSERT INTO ucitel (uzivatelia_id_uzivatel) VALUES (?)");
     } else if ($typ == "Student") {
         $stmt = $conn->prepare("INSERT INTO student (user_student_id ) VALUES (?)");
+    } else if ($typ == "Admin"){
+        $stmt = $conn->prepare("INSERT INTO admin (user_id) VALUES (?)");
     }
     
     $stmt->bind_param("i",$userID);
@@ -158,6 +160,11 @@ function checkUserType(){
     $stmt1->execute();
     $result1 = $stmt1->get_result();
 
+    $stmt2 = $conn->prepare("SELECT admin_id FROM admin WHERE user_id = ?");
+    $stmt2->bind_param("i",$_SESSION['UID']);
+    $stmt2->execute();
+    $result2 = $stmt2->get_result();
+
 
     if (mysqli_num_rows($result)==1)
     {
@@ -173,6 +180,12 @@ function checkUserType(){
         CloseCon($conn);
         $_SESSION["SID"] = $row1["id_student"];
         header("location: ../../student/index/student.php");
+        exit();
+    } else if(mysqli_num_rows($result2)==1){
+        $row2 = $result2->fetch_assoc();
+        CloseCon($conn);
+        $_SESSION["SID"] = $row2["admin_id"];
+        header("location: ../../admin/index/index.php");
         exit();
     }
     else {
