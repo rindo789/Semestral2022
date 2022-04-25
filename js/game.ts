@@ -40,7 +40,6 @@ function nextQuestion(){
             document.getElementById("submit").hidden = false;
             document.getElementById("next").hidden = true;
             clearInterval(intervarID);
-            console.log("the end");
             return;
         }
         //schovaj aktualnu otázku a ukáž dalšiu
@@ -106,7 +105,6 @@ function sendData(){
 
  answer = answer + '}}';
  if (answer == '{}' || answer== '{}}') answer = null;
- console.log(answer);
 
 var jason = JSON.parse(answer);
 
@@ -123,7 +121,6 @@ xmlhttp.onload = function() {
     addScore(responsteJSON.odpoved);
     sendGameInfo();
     timerStart();
-    console.log(score);
 
 }
 xmlhttp.open("POST", "../../student/include/gameAjax.php");
@@ -180,8 +177,6 @@ function multyEval(){
     if (max_multiplier < multyplier){
         max_multiplier = multyplier;
     }
-
-    console.log("nasobic:" + multyplier);
     
     document.getElementById("multyplier").innerHTML = "násobok: " + multyplier;
 }
@@ -192,8 +187,6 @@ function rightCounter(odpoved){
         right_answers += 1;
         max_right_answers += 1;
     } else right_answers = 0;
-
-    console.log("spravne odpoveede:" + right_answers);
     
 }
 
@@ -236,7 +229,6 @@ function timerEnd() {
     if (cas < short_time){
         short_time = cas;
     }
-    console.log("celkovy cas: " + (all_time/60));
     
     clearInterval(intervarID);
 }

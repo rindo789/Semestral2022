@@ -16,3 +16,23 @@ nav{
         text-align: left;
     }
 }
+table {
+    border-collapse: collapse;
+
+    th, td, tr {
+        border: 2px black solid;
+    }
+
+    th, td{
+        padding: 5px;
+    }
+}
+
+#add_user_form {
+    label {
+        display: block;
+    }
+    input {
+        display: block;
+    }
+}

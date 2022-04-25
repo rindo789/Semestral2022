@@ -17,4 +17,21 @@ nav {
   text-align: left;
 }
 
+table {
+  border-collapse: collapse;
+}
+table th, table td, table tr {
+  border: 2px black solid;
+}
+table th, table td {
+  padding: 5px;
+}
+
+#add_user_form label {
+  display: block;
+}
+#add_user_form input {
+  display: block;
+}
+
 /*# sourceMappingURL=harrystyles.css.map */

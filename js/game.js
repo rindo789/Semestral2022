@@ -1,4 +1,3 @@
-"use strict";
 //najdene vsetkych fieldsetov
 var question_list = document.getElementsByTagName("fieldset");
 //fieldset, ktorý označuje, ktorá otázka je na teraz
@@ -25,7 +24,7 @@ var all_time = 0;
 var short_time = 999;
 //schovaj fieldsety okrem prvého
 function hideAll() {
-    for (let i = 1; i < question_list.length; i++) {
+    for (var i = 1; i < question_list.length; i++) {
         document.getElementById(question_list[i].id).hidden = true;
     }
     question_now = question_list[0];
@@ -33,13 +32,12 @@ function hideAll() {
 }
 //schovaj aktualnu otázku a ukaz dalsiu
 function nextQuestion() {
-    for (let i = 0; i < question_list.length; i++) {
+    for (var i = 0; i < question_list.length; i++) {
         //ak už nie je dalsia otázka tak ukáž submit button
         if (question_list[i + 1] == null) {
             document.getElementById("submit").hidden = false;
             document.getElementById("next").hidden = true;
             clearInterval(intervarID);
-            console.log("the end");
             return;
         }
         //schovaj aktualnu otázku a ukáž dalšiu
@@ -65,12 +63,12 @@ function sendData() {
     //pocitadlo kolko bolo zapísaných
     var option_writen = 0;
     //najde pocet elementov, ktoré boli vybrané na porovnanie potom
-    for (let i = 0; i < children.length; i++) {
+    for (var i = 0; i < children.length; i++) {
         if (children[i].tagName == "INPUT" && children[i].type != "hidden" && children[i].checked) {
             option_num += 1;
         }
     }
-    for (let i = 0; i < children.length; i++) {
+    for (var i = 0; i < children.length; i++) {
         if (children[i].tagName == "INPUT") {
             if (children[i].type == "text") {
                 answer += '"' + getQuestionID(children[i].name) + '"' +
@@ -101,10 +99,9 @@ function sendData() {
     answer = answer + '}}';
     if (answer == '{}' || answer == '{}}')
         answer = null;
-    console.log(answer);
     var jason = JSON.parse(answer);
-    const answer_json = JSON.stringify(jason);
-    const xmlhttp = new XMLHttpRequest();
+    var answer_json = JSON.stringify(jason);
+    var xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function () {
         var responsteJSON = JSON.parse(this.responseText);
         timerEnd();
@@ -114,7 +111,6 @@ function sendData() {
         addScore(responsteJSON.odpoved);
         sendGameInfo();
         timerStart();
-        console.log(score);
     };
     xmlhttp.open("POST", "../../student/include/gameAjax.php");
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -124,7 +120,7 @@ function sendData() {
 function getQuestionID(string) {
     var question_id = "";
     var number_found = false;
-    for (let i = 0; i < string.length; i++) {
+    for (var i = 0; i < string.length; i++) {
         if (string[i] == "[") {
             number_found = true;
         }
@@ -143,7 +139,7 @@ function getQuestionID(string) {
 function getOptionID(string) {
     var option_id = "";
     var number_found = false;
-    for (let i = string.length; i > 0; i--) {
+    for (var i = string.length; i > 0; i--) {
         if (string[i] == "]") {
             number_found = true;
         }
@@ -175,7 +171,6 @@ function multyEval() {
     if (max_multiplier < multyplier) {
         max_multiplier = multyplier;
     }
-    console.log("nasobic:" + multyplier);
     document.getElementById("multyplier").innerHTML = "násobok: " + multyplier;
 }
 //zisti ci bolo odpoved dobre, ak ano zvys pocitadlo ak nie daj 0
@@ -186,7 +181,6 @@ function rightCounter(odpoved) {
     }
     else
         right_answers = 0;
-    console.log("spravne odpoveede:" + right_answers);
 }
 //animacia na pridanie score ak odpoved bolo dobrá, ide len o 100 bodov +-
 function addScore(odpoved) {
@@ -195,7 +189,7 @@ function addScore(odpoved) {
     }
     else
         score -= 100;
-    let counts = setInterval(updated);
+    var counts = setInterval(updated);
     function updated() {
         var count = document.getElementById("score");
         if (odpoved == "yes") {
@@ -225,7 +219,6 @@ function timerEnd() {
     if (cas < short_time) {
         short_time = cas;
     }
-    console.log("celkovy cas: " + (all_time / 60));
     clearInterval(intervarID);
 }
 function timeScore(answer) {

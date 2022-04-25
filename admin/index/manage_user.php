@@ -1,5 +1,7 @@
 <?php
-include '../../login/include/loginFunctions.inc.php';
+include_once '../../login/include/loginFunctions.inc.php';
+include_once '../include/manage_user.inc.php';
+
 session_start();
 loginCheck();
 ?>
@@ -22,25 +24,25 @@ loginCheck();
         <a href="../../login/include/singout.inc.php">Odhlasiť sa</a>
         <a href="index.php">Domov</a>
     </nav>
-    <div class="sidenav">
-        <a href="crate_user.php"></a>
-    </div>
     <div class="search_user">
         <div class="search_bar">
             <input type="text" id="user_name" placeholder="Zadaj meno užívateľa">
             <input type="button" onclick="searchUser()" value="Hľadaj">
         </div>
-        <div id="search_result">
-            <p id="result_text"></p>
-        </div>
+        <a href="manage_userNew.php"><button>Vytvoriť užívateľa</button></a>
         <table id="search_table">
-            <tr>
-                <th>ID</th>
-                <th>Nick</th>
-                <th>Meno Priezvisko</th>
-                <th>Manažér</th>
-                <th>Typ</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nick</th>
+                    <th>Meno Priezvisko</th>
+                    <th>Manažér</th>
+                    <th>Typ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php echo showUsers(); ?>
+            </tbody>
         </table>
     </div>
 </body>

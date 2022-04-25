@@ -1,4 +1,5 @@
 <?php
+include_once "../../main/dbh.inc.php";
 //errory pre sign up
 function missingInput($meno,$nick,$email,$heslo,$hesloZnova,$typ)
 {
@@ -184,7 +185,7 @@ function checkUserType(){
     } else if(mysqli_num_rows($result2)==1){
         $row2 = $result2->fetch_assoc();
         CloseCon($conn);
-        $_SESSION["SID"] = $row2["admin_id"];
+        $_SESSION["AID"] = $row2["admin_id"];
         header("location: ../../admin/index/index.php");
         exit();
     }
