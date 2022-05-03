@@ -4,17 +4,49 @@
   font-family: "Raleway", sans-serif;
 }
 
-nav {
-  margin: 1em;
+#menu {
+  font-family: "Raleway", sans-serif;
+  font-size: 20pt;
+  background-color: #2168AA;
+  padding: 10px;
+}
+#menu a {
+  padding-left: 10%;
+  color: white;
+  text-decoration: none;
+}
+#menu a:visited {
+  color: white;
+}
+#menu a:hover {
+  text-decoration: underline;
+  color: grey;
 }
 
 .manage_bar {
-  margin: 2em;
+  float: left;
+  height: 100%;
+  width: 300px;
+  background-color: #2168AA;
 }
 .manage_bar a {
-  margin: 1em;
+  background-color: white;
+  padding: 0.5em 0em;
+  margin: 1em 1em;
+  font-size: 18pt;
   display: block;
-  text-align: left;
+  border-radius: 5em;
+  text-align: center;
+  text-decoration: none;
+  color: #2168AA;
+}
+.manage_bar a:hover {
+  background-color: rgb(202, 202, 202);
+  color: #55a1e7;
+}
+
+.search_user {
+  margin-left: 20em;
 }
 
 table {
@@ -26,12 +58,22 @@ table th, table td, table tr {
 table th, table td {
   padding: 5px;
 }
+table tr:nth-child(even) {
+  background-color: rgb(196, 194, 194);
+}
+table tr:nth-child(odd) {
+  background-color: white;
+}
 
 #add_user_form label {
   display: block;
 }
 #add_user_form input {
   display: block;
+}
+
+fieldset p {
+  display: inline;
 }
 
 /*# sourceMappingURL=harrystyles.css.map */

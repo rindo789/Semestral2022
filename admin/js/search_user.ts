@@ -37,7 +37,7 @@ function searchUser(){
 
         //vytvor tlacidlo na prechod do editácie užívatela
         link_to = document.createElement("a");
-        link_to.href = "../include/manage_user_check.php?user_id="+element["id_uzivatel"]+"&state=show";
+        link_to.href = "../include/manage_userEdit.php?user_id="+element["id_uzivatel"];
         link_to.innerHTML = "Upraviť";
         cell = row.insertCell();
         cell.insertAdjacentElement("beforeend",link_to);

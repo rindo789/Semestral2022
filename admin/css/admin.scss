@@ -1,22 +1,60 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Raleway", sans-serif;;
+    font-family: "Raleway", sans-serif;
 }
 
-nav{
-    margin: 1em;
+#menu {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+    background-color: #2168AA;
+    padding: 10px;
+
+    a {
+        padding-left: 10%;
+        color: white;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: white;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+        color: grey;
+    }
 }
 
 .manage_bar {
-    margin: 2em;
+    float: left;
+    height: 100%;
+    width: 300px;
+    background-color: #2168AA;
+
     a {
-        margin: 1em;
+        background-color: white;
+        padding: 0.5em 0em;
+        margin: 1em 1em;
+        font-size: 18pt;
         display: block;
-        text-align: left;
+        border-radius: 5em;
+        text-align: center;
+        text-decoration: none;
+        color: #2168AA;
     }
+
+    a:hover {
+        background-color: rgb(202, 202, 202);
+        color: #55a1e7;
+    }
+
+}
+.search_user {
+    margin-left: 20em;
 }
 table {
+    
     border-collapse: collapse;
 
     th, td, tr {
@@ -25,6 +63,13 @@ table {
 
     th, td{
         padding: 5px;
+    }
+
+    tr:nth-child(even) {
+        background-color: rgb(196, 194, 194);
+    }
+    tr:nth-child(odd) {
+        background-color: white;
     }
 }
 
@@ -35,4 +80,8 @@ table {
     input {
         display: block;
     }
+}
+
+fieldset p {
+    display: inline;
 }
