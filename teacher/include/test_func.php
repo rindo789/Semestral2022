@@ -10,10 +10,9 @@ function showTests($teacherId){
     $result = $stmt->get_result();
     //vytvor tlacidla na vymazanie a ukazanie v teacher.php
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>".$row['id_test']."</td>
-        <td>".$row['nazov_testu']."</td>
-        <td><a href='../include/test_states.php?testId=".$row['id_test']."&state=show'>Ukáž</a></td>
-        <td><a href='../include/test_states.php?testId=".$row['id_test']."&state=delete'>Zmaž</a></td>
+        echo "<tr><td>".$row['nazov_testu']."</td>
+        <td><a href='../include/test_states.php?testId=".$row['id_test']."&state=show'>Zobraz</a></td>
+        <td><a href='../include/test_states.php?testId=".$row['id_test']."&state=delete'>Vymaž</a></td>
         </tr>";
     }
     CloseCon($conn);

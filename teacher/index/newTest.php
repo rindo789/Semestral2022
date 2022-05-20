@@ -11,11 +11,17 @@ loginCheck();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/harrystyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     <script src="../../js/create1.js"></script>
-    <div id="menu"><a href="teacher.php">Domov</a></div>
+    <nav id="menu">
+        <a href="teacher.php">Testy</a>
+        <a href="group.php">Skupiny</a>
+        <a href="scoreTest.php">Hodnotenia</a>
+        <a href="../../login/include/singout.inc.php">Odhlasiť sa</a>
+    </nav>
     <div id="inside">
     <form action='../include/newTest.inc.php' method='POST' id="test_form">
         <?php 

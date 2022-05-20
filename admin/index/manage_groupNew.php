@@ -1,8 +1,7 @@
 <?php
-include_once '../../login/include/loginFunctions.inc.php';
-include_once '../include/manage_user.inc.php';
-
 session_start();
+include_once '../../login/include/loginFunctions.inc.php';
+include_once '../include/manage_group.inc.php';
 loginCheck();
 ?>
 <!DOCTYPE html>
@@ -14,8 +13,6 @@ loginCheck();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/harrystyles.css">
     <title>Document</title>
-
-    <script src="../js/search_user.js"></script>
 </head>
 
 <body>
@@ -29,14 +26,17 @@ loginCheck();
         <a href="manage_tests.php">Manažér testov</a>
         <a href="manage_result.php">Manažér hodnotení</a>
     </div>
-
-    <div class="user_edit">
-    <div id="add_user_form">
-        <?php
-            echo formUser($_GET["user_id"]);
-        ?>
-    </div>
-    </div>
+    <form action='../include/manage_group_check.php' method='POST' id="group_form">
+        <label for="name">Meno skupiny</label>
+        <br>
+        <input type="text" placeholder="Zadajte meno skupiny" name="name">
+        <br>
+        <label for="teacher">ID učiteľa</label>
+        <br>
+        <input type="number" placeholder="Zadajte ID ucitela" name="teacher_id">
+        <br>
+        <input type="submit" name="newGroup" value="Vytvoriť skupinu">
+    </form>
 </body>
 
 </html>

@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  background-color: #2168AA;
+  height: 100vh;
+}
+
+#flex_inside {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.welcome {
+  text-align: center;
+  color: white;
+}
+
+#divider {
+  background-color: white;
+  height: 400px;
+  width: 800px;
+  -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.81);
+  box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.81);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 5px;
+}
+
+#vr_line {
+  height: 350px;
+  width: 5px;
+  background-color: #2168AA;
+  border-radius: 2px;
+}
+
+#login_divide, #singup_divide {
+  width: 400px;
+  height: 350px;
+  padding: 30px;
+  text-align: center;
+  font-size: 16pt;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+#login_divide button, #singup_divide button {
+  width: 160px;
+  height: 50px;
+  background-color: #2168AA;
+  border: none;
+  font-size: 16pt;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+}
+#login_divide button:hover, #singup_divide button:hover {
+  cursor: pointer;
+  background-color: #4697e2;
+}
+
+#divider_login {
+  background-color: white;
+  height: 600px;
+  width: 400px;
+  -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.81);
+  box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.81);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 20pt;
+  text-align: center;
+}
+#divider_login input {
+  height: 50px;
+  width: 80%;
+  border-color: rgba(128, 128, 128, 0.397);
+  border-radius: 20px;
+  font-size: 16pt;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#divider_login p {
+  text-align: left;
+  margin-left: 10%;
+}
+#divider_login .submiter {
+  width: 160px;
+  height: 50px;
+  background-color: #2168AA;
+  border: none;
+  font-size: 16pt;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+}
+#divider_login .submiter:hover {
+  cursor: pointer;
+  background-color: #4697e2;
+}
+#divider_login h1 {
+  margin-bottom: 16%;
+}
+
+#divider_singup {
+  background-color: white;
+  height: 800px;
+  width: 400px;
+  -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.81);
+  box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.81);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 20pt;
+  text-align: center;
+}
+#divider_singup input {
+  height: 50px;
+  width: 80%;
+  border-color: rgba(128, 128, 128, 0.397);
+  border-radius: 20px;
+  font-size: 16pt;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+#divider_singup select, #divider_singup option {
+  height: 50px;
+  width: 80%;
+  border-color: rgba(128, 128, 128, 0.397);
+  border-radius: 20px;
+  font-size: 16pt;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+#divider_singup option:hover {
+  background-color: black;
+}
+#divider_singup p {
+  text-align: left;
+  margin-left: 10%;
+}
+#divider_singup .submiter {
+  width: 160px;
+  height: 50px;
+  background-color: #2168AA;
+  border: none;
+  font-size: 16pt;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+}
+#divider_singup .submiter:hover {
+  cursor: pointer;
+  background-color: #4697e2;
+}
+#divider_singup h1 {
+  margin-top: 1%;
+  margin-bottom: 5%;
+}
+
+/*# sourceMappingURL=login.css.map */

@@ -28,7 +28,7 @@ loginCheck();
         <a href="manage_user.php">Manažér užívateľov</a>
         <a href="manage_group.php">Manažér skupín</a>
         <a href="manage_tests.php">Manažér testov</a>
-        <a href="manage_results.php">Manažér hodnotení</a>
+        <a href="manage_result.php">Manažér hodnotení</a>
     </div>
     <form action='../include/manage_group_check.php' method='POST' id="group_form">
         

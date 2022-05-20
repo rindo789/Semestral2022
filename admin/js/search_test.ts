@@ -1,5 +1,5 @@
-function searchUser(){
-    var user_name = document.getElementById("user_name")!.value;
+function searchTest(){
+    var search_prompt = document.getElementById("search_field")!.value;
     var table = <HTMLTableElement>document.getElementById("search_table");
     
     //vymaz na zaciatku vyhladavanie predoslí výsledok
@@ -10,12 +10,19 @@ function searchUser(){
     var responseJSON;
 
     const xmlhttp = new XMLHttpRequest();
-    xmlhttp.onload = function () {        
+    xmlhttp.onload = function () {    
+        //console.log(this.responseText);
+            
+        if (this.responseText == "Nenašla sa žiadna skupina" || this.responseText == "Chyba pri hladaní"){
+            return;
+        }
         responseJSON = JSON.parse(this.responseText);
     };
-    xmlhttp.open("GET", "../include/search_user_ajax.php?user_name="+user_name, false);
+    xmlhttp.open("GET", "../include/search_tests.ajax.php?search_prompt="+search_prompt, false);
     xmlhttp.send();
 
+    if (responseJSON == undefined) return;
+    
     //vytvor telo tabulky kde pojde výsledok
     var table_body = table.createTBody();
     //chod do arraya najdených osôb
@@ -30,14 +37,14 @@ function searchUser(){
         }        
         //vytvor tlacidlo pre vymazanie pouzivatela a pridaj ho do novej bunky
         var link_to = document.createElement("a");
-        link_to.href = "../include/manage_user_check.php?user_id="+element["id_uzivatel"]+"&state=delete";
+        link_to.href = "../include/manage_tests_check.php?test_id="+element["id_test"]+"&state=delete";
         link_to.innerHTML = "Delete";
         var cell = row.insertCell();
         cell.insertAdjacentElement("beforeend",link_to);
 
         //vytvor tlacidlo na prechod do editácie užívatela
         link_to = document.createElement("a");
-        link_to.href = "../index/manage_userEdit.php?user_id="+element["id_uzivatel"];
+        link_to.href = "../index/manage_testsEdit.php?test_id="+element["id_test"];
         link_to.innerHTML = "Upraviť";
         cell = row.insertCell();
         cell.insertAdjacentElement("beforeend",link_to);

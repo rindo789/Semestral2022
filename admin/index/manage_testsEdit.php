@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <?php
-include '../include/test_func.php';
-include '../../login/include/loginFunctions.inc.php';
 session_start();
+include '../../teacher/include/test_func.php';
+include '../include/manage_tests.inc.php';
+include '../../login/include/loginFunctions.inc.php';
+
+$_SESSION["testIdToEdit"] = $_GET["test_id"];
 loginCheck();
 ?>
 <html lang="en">
@@ -12,6 +15,7 @@ loginCheck();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/harrystyles.css">
+    <link rel="stylesheet" href="../../teacher/css/harrystyles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
@@ -22,19 +26,15 @@ loginCheck();
     <script src="../../js/create1.js"></script>
     <script src="../../js/set_date.js"></script>
 
-    <nav id="menu">
-        <a href="teacher.php">Testy</a>
-        <a href="group.php">Skupiny</a>
-        <a href="scoreTest.php">Hodnotenia</a>
-        <a href="../../login/include/singout.inc.php">Odhlasiť sa</a>
-    </nav>
-    
+    <div id="menu"><a href="manage_tests.php">Domov</a></div>
     <div id="inside">
-        <form action='../include/newTest.inc.php' method='POST' id="test_form">
+        <form action='../include/manage_tests_check.php' method='POST' id="test_form">
             <?php
-            echo "<h1>" . $_SESSION["testName"] . "</h1>";
+            echo "<h1>";
+            echoTestName();
+            echo "</h1>";
             echo "skupina: ";
-            echoGroups();
+            adminGroups();
             echo "<br>";
             echo "opis: ";
             echoDescription();

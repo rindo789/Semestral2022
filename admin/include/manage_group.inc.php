@@ -114,4 +114,47 @@ function loadStudents(){
             echo "</fieldset>";
     }
 }
+
+function teacherExist($teacherID){
+    $conn = OpenCon();
+    $stmt = $conn->prepare("SELECT id_uci FROM ucitel WHERE id_uci = ?");
+    $stmt->bind_param("i",$teacherID);
+    if (!$stmt->execute()){
+        CloseCon($conn);
+        return;
+    }
+    $result = $stmt->get_result();
+    $row = $result->fetch_all();
+    CloseCon($conn);
+
+    if (mysqli_num_rows($result) == 0){
+        return false;
+    } else return true;
+}
+
+function createGroup($group_name, $teacher_id){
+    $conn = OpenCon();
+    $stmt = $conn->prepare("INSERT INTO groups (group_name, teacher_id) VALUES (?,?)");
+    $stmt->bind_param("si",$group_name, $teacher_id);
+    if (!$stmt->execute()) return;
+
+    $new_group_id = mysqli_insert_id($conn);
+    
+    CloseCon($conn);
+
+    //pridaj zatial prázdy záznam do xml
+    $xml = simplexml_load_file("../../xml/groups.xml");
+    $group = $xml->addChild('group');
+    $group->addAttribute('id',$new_group_id);
+    $group->addchild('name',$_POST["name"]);
+    $group->addchild('students');
+
+    $dom = new DOMDocument('1.0');
+    $dom->preserveWhiteSpace = false;
+    $dom->formatOutput = true;
+    $dom->loadXML($xml->asXML());
+    $dom->save('../../xml/groups.xml');
+
+    return $new_group_id;
+}
 ?>

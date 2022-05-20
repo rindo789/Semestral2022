@@ -1,5 +1,4 @@
 th, td {
-  border: solid 1px;
   text-align: center;
 }
 
@@ -24,17 +23,49 @@ fieldset p {
   font-family: "Raleway", sans-serif;
 }
 
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-top: 5vh;
+  font-size: 18pt;
+}
+table th {
+  background-color: lightgray;
+}
+table td {
+  padding: 10px;
+}
+table tr:nth-child(even) {
+  background-color: rgb(226, 226, 226);
+}
+table .table_id {
+  padding: 0px 30px;
+}
+table a {
+  font-weight: bold;
+  color: #2168AA;
+  text-decoration: none;
+}
+table a:hover {
+  color: #55a1e7;
+}
+
 #schedule_window {
   position: fixed;
   display: none;
-  top: 50%;
-  left: 35%;
   height: auto;
   width: 25em;
   padding: 20px;
   z-index: 1;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background-color: grey;
   color: white;
   font-size: 16pt;
@@ -97,6 +128,50 @@ fieldset {
   border-radius: 10px;
 }
 
+#menu {
+  font-family: "Raleway", sans-serif;
+  font-size: 20pt;
+  background-color: #2168AA;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+#menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+#menu a:visited {
+  color: white;
+}
+#menu a:hover {
+  font-weight: bold;
+  color: lightblue;
+}
+
+.manage_bar {
+  float: left;
+  height: 94.6vh;
+  width: 300px;
+  background-color: #2168AA;
+}
+.manage_bar a {
+  background-color: white;
+  padding: 0.5em 0em;
+  margin: 1em 1em;
+  font-size: 18pt;
+  display: block;
+  border-radius: 5em;
+  text-align: center;
+  text-decoration: none;
+  color: #2168AA;
+}
+.manage_bar a:hover {
+  background-color: rgb(202, 202, 202);
+  color: #55a1e7;
+}
+
 #inside {
   font-family: "Raleway", sans-serif;
   font-size: 20pt;
@@ -137,25 +212,6 @@ fieldset {
 #inside fieldset button {
   height: 40px;
   margin-top: 20px;
-}
-
-#menu {
-  font-family: "Raleway", sans-serif;
-  font-size: 20pt;
-  background-color: skyblue;
-  padding: 10px;
-}
-#menu a {
-  padding-left: 10%;
-  color: white;
-  text-decoration: none;
-}
-#menu a:visited {
-  color: white;
-}
-#menu a:hover {
-  text-decoration: underline;
-  color: grey;
 }
 
 .correct {

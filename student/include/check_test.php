@@ -150,17 +150,17 @@ function scoreAns($answerId){
     $answerXML = $xml2->xpath("//answer[@id=".$answerId."]");
     //pridaj do xml odpovede
     foreach ($answerXML as $answer){
-        if ($percent < 56) {
+        if ($percent <= 59) {
             $answer->addChild("mark","FX");
-        } else if ($percent > 56 && $percent < 65) {
+        } else if ($percent >= 60 && $percent <= 68) {
             $answer->addChild("mark","E");
-        } else if ($percent > 65 && $percent < 74){
+        } else if ($percent >= 69 && $percent <= 76){
             $answer->addChild("mark","D");
-        } else if ($percent > 74 && $percent < 83){
+        } else if ($percent >= 77 && $percent <= 84){
             $answer->addChild("mark","C");
-        } else if ($percent > 83 && $percent < 92){
+        } else if ($percent >= 85 && $percent <= 92){
             $answer->addChild("mark","B");
-        } else if ($percent > 92 && $percent <= 100){
+        } else if ($percent >= 93 && $percent <= 100){
             $answer->addChild("mark","A");
         }
     }

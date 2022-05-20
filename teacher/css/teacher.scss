@@ -1,5 +1,4 @@
 th, td {
-    border: solid 1px;
     text-align: center;
 }
 
@@ -21,17 +20,63 @@ fieldset p {
     font-family: 'Raleway', sans-serif;
 }
 
+//dovonska stránka
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+table{
+    margin: 0 auto;
+
+    border-collapse: collapse;
+
+    margin-top: 5vh;
+
+    font-size: 18pt;
+
+    th {
+        background-color: lightgray;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    tr:nth-child(even){
+        background-color: rgb(226, 226, 226);
+    }
+
+    .table_id {
+        padding: 0px 30px;
+    }
+    .table_name {
+       // padding: 0px 50px;
+    }
+
+    a {
+        font-weight: bold;
+        color: #2168AA;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #55a1e7;
+    }
+}
+
+
 #schedule_window {
     position: fixed;
     display: none;
-    top: 50%;
-    left: 35%;
     height: auto;
     width: 25em;
     padding: 20px;
     z-index: 1;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     background-color: grey;
 
     color: white;
@@ -103,6 +148,57 @@ fieldset {
     border-radius: 10px;
 }
 
+#menu {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+    background-color: #2168AA;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: flex-end;
+
+
+    a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+
+    a:visited {
+        color: white;
+    }
+    
+    a:hover {
+        font-weight: bold;
+        color: lightblue;
+    }
+}
+
+.manage_bar {
+    float: left;
+    height: 94.6vh;
+    width: 300px;
+    background-color: #2168AA;
+
+    a {
+        background-color: white;
+        padding: 0.5em 0em;
+        margin: 1em 1em;
+        font-size: 18pt;
+        display: block;
+        border-radius: 5em;
+        text-align: center;
+        text-decoration: none;
+        color: #2168AA;
+    }
+
+    a:hover {
+        background-color: rgb(202, 202, 202);
+        color: #55a1e7;
+    }
+
+}
+
 #inside {
     font-family: 'Raleway', sans-serif;
     font-size: 20pt;
@@ -148,28 +244,6 @@ fieldset {
     fieldset button {
         height: 40px;
         margin-top: 20px;
-    }
-}
-
-#menu {
-    font-family: 'Raleway', sans-serif;
-    font-size: 20pt;
-    background-color: skyblue;
-    padding: 10px;
-
-    a {
-        padding-left: 10%;
-        color: white;
-        text-decoration: none;
-    }
-
-    a:visited {
-        color: white;
-    }
-    
-    a:hover {
-        text-decoration: underline;
-        color: grey;
     }
 }
 

@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once '../../login/include/loginFunctions.inc.php';
-include_once '../include/manage_user.inc.php';
 loginCheck();
 ?>
 <!DOCTYPE html>
@@ -14,11 +13,11 @@ loginCheck();
     <link rel="stylesheet" href="../css/harrystyles.css">
     <title>Document</title>
 
-    <script src="../js/search_group.js"></script>
+    <script src="../js/search_test.js"></script>
 </head>
 
 
-<body onload="searchGroup();">
+<body onload="searchTest();">
     <div id="menu">
         <a href="../../login/include/singout.inc.php">Odhlasiť sa</a>
     </div>
@@ -30,33 +29,26 @@ loginCheck();
         <a href="manage_result.php">Manažér hodnotení</a>
     </div>
 
-    <div id="groups">
-        <a href="manage_groupNew.php">
-            <button type="button">Vytvoriť skupinu</button>
-        </a>
-
-        <br><br>
-
-        <div class="search_bar">
-            <h3>Vyhladaj</h3>
-            <br>
-            <input type="text" id="group_name" placeholder="Zadaj názov skupiny">
-            <input type="button" onclick="searchGroup();" value="Hľadaj">
-        </div>
-
-        <table id="group_table">
+    <div id="search_bar">
+        <label for="search_prompt">Vyhladaj test</label> <br>
+        <input type="text" id="search_field" name="search_prompt" placeholder="Zadaj výraz na vyhľadanie">
+        <button onclick="searchTest()">Vyhladaj</button>
+    </div>
+    <a href="manage_testsNew.php"><button>Vytvor nový test</button></a>
+    <br>
+    <div id="test_table">
+        <table id="search_table">
             <thead>
                 <tr>
-                    <th>ID skupiny</th>
-                    <th>Názov</th>
-                    <th>ID Vlastníka</th>
+                    <th>ID testu</th>
+                    <th>Názov testu</th>
+                    <th>ID uciteľa</th>
                 </tr>
             </thead>
             <tbody>
 
             </tbody>
         </table>
-
     </div>
 </body>
 
