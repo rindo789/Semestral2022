@@ -1,5 +1,10 @@
-var x = document.getElementsByTagName("fieldset");
-let y = x.length;
+let y = 0;
+
+function countFields(){
+    var x = document.getElementsByTagName("fieldset");
+    y = x.length-1;
+    console.log(y);
+}
 
 function AddStudent(){
 
@@ -20,7 +25,7 @@ function AddStudent(){
     delete_button.innerText = "x";
 
     
-    document.getElementById("group_form").insertAdjacentElement("afterbegin", field);
+    document.getElementById("flex_buttons").insertAdjacentElement("beforebegin", field);
     field.insertAdjacentElement("beforeend",student_id);
     field.insertAdjacentElement("beforeend",delete_button);
 }
@@ -29,9 +34,9 @@ function DeleteStudent(value){
     document.getElementById("field"+value).remove();
 }
 function studentIncrement(){
-    y++;
+    y+=1;
     return y;
 }
 function studentDecrese(){
-    y--;
+    y-=1;
 }

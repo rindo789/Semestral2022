@@ -8,19 +8,22 @@
   font-family: "Raleway", sans-serif;
   font-size: 20pt;
   background-color: #2168AA;
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 #menu a {
-  padding-left: 10%;
   color: white;
   text-decoration: none;
+  padding: 10px 20px;
 }
 #menu a:visited {
   color: white;
 }
 #menu a:hover {
-  text-decoration: underline;
-  color: grey;
+  font-weight: bold;
+  color: lightblue;
 }
 
 .manage_bar {
@@ -45,24 +48,29 @@
   color: #55a1e7;
 }
 
-.search_user {
-  margin-left: 20em;
-}
-
 table {
+  margin: 0 auto;
   border-collapse: collapse;
-  /*tr:nth-child(even) {
-      background-color: rgb(196, 194, 194);
-  }
-  tr:nth-child(odd) {
-      background-color: white;
-  }*/
+  margin-top: 5vh;
+  font-size: 18pt;
 }
-table th, table td, table tr {
-  border: 2px black solid;
+table th {
+  background-color: lightgray;
+  padding: 10px 20px;
 }
-table th, table td {
-  padding: 5px;
+table td {
+  padding: 10px 20px;
+}
+table tr:nth-child(even) {
+  background-color: rgb(226, 226, 226);
+}
+table a {
+  font-weight: bold;
+  color: #2168AA;
+  text-decoration: none;
+}
+table a:hover {
+  color: #55a1e7;
 }
 
 #add_user_form label {
@@ -130,9 +138,9 @@ fieldset p {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   background-color: grey;
-  color: white;
   font-size: 14pt;
   text-align: center;
+  background-color: lightgrey;
 }
 #teacher_select_modal button, #group_select_modal button, #result_modal button {
   border-color: rgba(128, 128, 128, 0.301);
@@ -156,23 +164,127 @@ fieldset p {
   padding: 5px;
 }
 
-#menu {
+#result_modal {
+  flex-direction: row;
+  justify-content: space-between;
+  width: fit-content;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#result_modal th, #result_modal td, #result_modal tr {
+  border: white solid 1px;
+  padding: 5px 20px;
+}
+#result_modal thead {
+  font-weight: bold;
+}
+#result_modal .correct {
+  background-color: rgba(0, 128, 0, 0.448);
+}
+#result_modal .incorrect {
+  background-color: rgba(255, 0, 0, 0.448);
+}
+#result_modal #close, #result_modal table {
+  padding: 0;
+  margin: 0px 20px;
+}
+#result_modal #close:hover {
+  cursor: pointer;
+}
+
+#button_show_modal {
+  background: none;
+  border: none;
+  font-size: 18pt;
+  color: #2168AA;
+  font-weight: bold;
+}
+
+#button_show_modal:hover {
+  cursor: pointer;
+  color: #55a1e7;
+}
+
+#search_add_flex {
+  margin: 0 auto;
+  margin-top: 5vh;
+  padding: 0;
+  width: 55vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16pt;
+}
+#search_add_flex .search_bar button, #search_add_flex #search_bar button, #search_add_flex a button {
+  border-radius: 20px;
+  border-color: rgba(128, 128, 128, 0.301);
+  box-shadow: none;
+  width: 140px;
+  height: 60px;
+  background-color: white;
   font-family: "Raleway", sans-serif;
-  font-size: 20pt;
-  background-color: skyblue;
-  padding: 10px;
+  font-weight: bold;
+  font-size: 16pt;
 }
-#menu a {
-  padding-left: 10%;
-  color: white;
-  text-decoration: none;
+#search_add_flex .search_bar button:hover, #search_add_flex #search_bar button:hover, #search_add_flex a button:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.301);
 }
-#menu a:visited {
-  color: white;
+#search_add_flex .search_bar input, #search_add_flex #search_bar input {
+  font-size: 16pt;
 }
-#menu a:hover {
-  text-decoration: underline;
-  color: grey;
+#search_add_flex .search_bar button, #search_add_flex #search_bar button {
+  height: 40px;
+}
+#search_add_flex a button {
+  width: 180px;
+}
+
+#add_user_form, .user_edit {
+  margin: 0 auto;
+  width: fit-content;
+  font-size: 16pt;
+}
+#add_user_form h3, .user_edit h3 {
+  margin-top: 20px;
+}
+#add_user_form form, .user_edit form {
+  margin: 0 auto;
+  width: fit-content;
+}
+#add_user_form form input, .user_edit form input {
+  font-size: 14pt;
+}
+#add_user_form form label, .user_edit form label {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+#add_user_form form select, #add_user_form form option, .user_edit form select, .user_edit form option {
+  font-size: 16pt;
+}
+#add_user_form form #new_user_button, #add_user_form form #reset_button, .user_edit form #new_user_button, .user_edit form #reset_button {
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 20px;
+  border-color: rgb(49, 214, 63);
+  box-shadow: none;
+  width: 140px;
+  height: 60px;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 16pt;
+}
+#add_user_form form #new_user_button:hover, #add_user_form form #reset_button:hover, .user_edit form #new_user_button:hover, .user_edit form #reset_button:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.301);
+}
+#add_user_form form #reset_button, .user_edit form #reset_button {
+  border-color: rgba(128, 128, 128, 0.301);
 }
 
 /*# sourceMappingURL=harrystyles.css.map */

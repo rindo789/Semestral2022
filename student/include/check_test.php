@@ -109,6 +109,8 @@ function scoreAns($answerId){
                     $que->addChild("score", 0);
                 } else if ($tp_count == $student_asnwer){
                     $que->addChild("score", 1);
+                } else {
+                    $que->addChild("score", 0);
                 }                
             }
 

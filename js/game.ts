@@ -29,7 +29,7 @@ function hideAll (){
         document.getElementById(question_list[i].id).hidden = true;
     }
     question_now = question_list[0];
-    document.getElementById("submit").hidden = true;
+    document.getElementById("submit")?.style.display = "none";
 }
 
 //schovaj aktualnu otázku a ukaz dalsiu
@@ -37,8 +37,8 @@ function nextQuestion(){
     for (let i = 0; i < question_list.length; i++){
         //ak už nie je dalsia otázka tak ukáž submit button
         if (question_list[i+1] == null){
-            document.getElementById("submit").hidden = false;
-            document.getElementById("next").hidden = true;
+            document.getElementById("submit").style.display = "block";
+            document.getElementById("next").style.display = "none";
             clearInterval(intervarID);
             return;
         }
@@ -105,6 +105,12 @@ function sendData(){
 
  answer = answer + '}}';
  if (answer == '{}' || answer== '{}}') answer = null;
+ if (answer == null) {
+     emptyAnswer();
+     return;
+ }
+
+console.log(answer);
 
 var jason = JSON.parse(answer);
 
@@ -145,6 +151,27 @@ var number_found = false
     }    
 }
 
+function emptyAnswer(){
+    timerEnd();
+    right_answers = 0;
+    multyEval();
+
+    score -= 100;
+    
+    let counts=setInterval(updated);
+        function updated(){
+            var count = document.getElementById("score");
+            count.innerHTML=--score_before;
+            if(score_before===score)
+            {
+                clearInterval(counts);
+            }
+        }
+
+    sendGameInfo();
+    timerStart();
+}
+
 //najdi v mene moznosti, o ktorú možnosť sa jedná
 function getOptionID(string) {
 var option_id = "";
@@ -178,7 +205,7 @@ function multyEval(){
         max_multiplier = multyplier;
     }
     
-    document.getElementById("multyplier").innerHTML = "násobok: " + multyplier;
+    document.getElementById("multyplier").innerHTML = "Násobok: " + multyplier;
 }
 
 //zisti ci bolo odpoved dobre, ak ano zvys pocitadlo ak nie daj 0

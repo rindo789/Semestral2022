@@ -14,6 +14,7 @@ loginCheck();
     <link rel="stylesheet" href="../css/harrystyles.css">
     <script src="../js/create_test.js"></script>
     <script src="../../js/create1.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>

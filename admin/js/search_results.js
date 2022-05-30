@@ -44,6 +44,7 @@ function searchResult() {
         show_button.type = "button";
         show_button.innerText = "Zobraziť";
         show_button.setAttribute("onclick", "showResult(" + element["id_odp"] + ");");
+        show_button.id = "button_show_modal";
         cell = row.insertCell();
         cell.insertAdjacentElement("beforeend", show_button);
     });
@@ -51,7 +52,7 @@ function searchResult() {
 //funkcia na otvorenie modalu pre odpoved študenta
 function showResult(id_odpovede) {
     //zobraz modal
-    document.getElementById("result_modal").style.display = "block";
+    document.getElementById("result_modal").style.display = "flex";
     //najdi tabulku modalu
     var table = document.getElementById("table_results");
     //vymaz predošlé výsledky hladania
@@ -64,7 +65,7 @@ function showResult(id_odpovede) {
     //AJAX funkcia
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function () {
-        //console.table(this.responseText);
+        console.table(this.responseText);
         if (this.responseText == "Nič nenašlo" || this.responseText == "Chyba pri hladaní") {
             return;
         }
@@ -77,23 +78,45 @@ function showResult(id_odpovede) {
     //vytvor hlavicku tabulky a riadok
     var table_head = table.createTHead();
     var head_row = table_head.insertRow();
-    //vytvor novú bunku a daj jej šírku na základe počtu zodpovedaných otázok
-    var head_cell = head_row.insertCell();
-    head_cell.colSpan = responseJSON["colspan"];
+    //Vytvor do hlavicky znenia otázok, cyklovaním cez JSON
+    var head_cell;
+    var i = 1;
+    while (responseJSON["questions"][i]) {
+        head_cell = head_row.insertCell();
+        head_cell.textContent = responseJSON["questions"][i]["name"];
+        i++;
+    }
     //bunka pre body
-    var head_cell = head_row.insertCell();
+    head_cell = head_row.insertCell();
     head_cell.textContent = "Body";
     //bunka pre známku
-    var head_cell = head_row.insertCell();
+    head_cell = head_row.insertCell();
     head_cell.textContent = "Známka";
     //vytvor telo tabulky a nový riadok
     var table_body = table.createTBody();
     var body_row = table_body.insertRow();
     //cykluj cez odpovede a vypíš nazov otázky,odpoved a správnos´t odpovede
-    var i = 1;
+    i = 1;
     while (responseJSON["questions"][i]) {
         var body_cell = body_row.insertCell();
-        body_cell.textContent = responseJSON["questions"][i]["name"] + " " + responseJSON["questions"][i]["answer" + i] + " " + responseJSON["questions"][i]["correct"];
+        var j = 1;
+        while (responseJSON["questions"][i]["answer" + j]) {
+            var text_pole = document.createElement("p");
+            if (responseJSON["questions"][i]["answer" + j] == "/*empty*/") {
+                text_pole.innerHTML = "-";
+            }
+            else
+                text_pole.innerHTML = responseJSON["questions"][i]["answer" + j];
+            body_cell.insertAdjacentElement("beforeend", text_pole);
+            //body_cell.textContent += responseJSON["questions"][i]["answer"+j];
+            j += 1;
+        }
+        if (responseJSON["questions"][i]["correct"] == 0) {
+            body_cell.className = "incorrect";
+        }
+        else
+            body_cell.className = "correct";
+        //body_cell.textContent = responseJSON["questions"][i]["name"] + " " + responseJSON["questions"][i]["answer"+i];
         i++;
     }
     //vypis body

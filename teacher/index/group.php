@@ -29,7 +29,6 @@ loginCheck();
     <table id="groups">
         <h1>Vaše skupiny</h1>
         <tr>
-            <th>Id</th>
             <th>Nazov</th>
             <th>Show</th>
             <th>Delete</th>
@@ -38,7 +37,7 @@ loginCheck();
             showGroups();
         ?>
         <tr>
-            <td colspan="4" id="new_group_button">
+            <td colspan="3" id="new_group_button">
                 <button onclick="new_group()">nová skupina</button>
             </td>
 

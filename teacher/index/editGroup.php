@@ -14,7 +14,7 @@ loginCheck();
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
-<body>
+<body onload="countFields();">
 <script src="../../js/group4.js"></script>
 <script src="../../js/ajax1.js"></script>
 <nav id="menu">
@@ -30,11 +30,15 @@ loginCheck();
     <form action='../include/newTest.inc.php' method='POST' id="group_form">
         
         <?php
+            showGroupName();
             loadStudents(); 
         ?>
-        <button type="button" onclick="AddStudent()">Pridaj študenta</button>
 
-        <input type="submit" name="saveGroup">
+        <div id="flex_buttons">
+            <button type="button" onclick="AddStudent()" id="add_member">Pridaj študenta</button>
+    
+            <input type="submit" name="saveGroup" id="group_submit">
+        </div>
     </form>
         
 </body>

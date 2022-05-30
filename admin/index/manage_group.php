@@ -12,6 +12,7 @@ loginCheck();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/harrystyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <title>Document</title>
 
     <script src="../js/search_group.js"></script>
@@ -31,17 +32,16 @@ loginCheck();
     </div>
 
     <div id="groups">
-        <a href="manage_groupNew.php">
-            <button type="button">Vytvoriť skupinu</button>
-        </a>
+        <div id="search_add_flex">
+            <div class="search_bar">
+                <h3>Vyhladaj skupiny</h3>
+                <input type="text" id="group_name" placeholder="Zadaj názov skupiny">
+                <button onclick="searchGroup();">Hľadaj</button>
+            </div>
 
-        <br><br>
-
-        <div class="search_bar">
-            <h3>Vyhladaj</h3>
-            <br>
-            <input type="text" id="group_name" placeholder="Zadaj názov skupiny">
-            <input type="button" onclick="searchGroup();" value="Hľadaj">
+            <a href="manage_groupNew.php">
+                <button type="button">Vytvoriť skupinu</button>
+            </a>
         </div>
 
         <table id="group_table">
@@ -50,6 +50,8 @@ loginCheck();
                     <th>ID skupiny</th>
                     <th>Názov</th>
                     <th>ID Vlastníka</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

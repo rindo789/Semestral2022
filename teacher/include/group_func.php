@@ -42,9 +42,9 @@ function showGroups(){
     CloseCon($conn);
 
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>".$row['id_group']."</td>
+        echo "<tr>
         <td>".$row['group_name']."</td>
-        <td><a href='../include/test_states.php?groupId=".$row['id_group']."&state=show'>Ukáž</a></td>
+        <td><a href='../include/test_states.php?groupId=".$row['id_group']."&state=show'>Zobraz</a></td>
         <td><a href='../include/test_states.php?groupId=".$row['id_group']."&state=delete'>Zmaž</a></td>
         </tr>";
     }
@@ -158,5 +158,27 @@ function groupDelete($groupId){
     $stmt->bind_param("i", $groupId);
     $stmt->execute();
     CloseCon($conn);
+}
+
+//zobraz meno skupiny v editore skupín
+function showGroupName(){
+    $conn = OpenCon();
+    $stmt = $conn->prepare("SELECT group_name from groups where teacher_id = ? AND id_group = ?");
+    $stmt->bind_param("ii", $_SESSION["TID"], $_SESSION["groupEdit"]);
+    if (!$stmt->execute()) {
+        CloseCon($conn);
+        return;
+    }
+    $result = $stmt->get_result();
+    if (mysqli_num_rows($result) == 0) {
+        CloseCon($conn);
+        return;
+    }
+    $row = $result->fetch_assoc();
+    CloseCon($conn);
+
+    echo "<h1>".$row["group_name"]."</h1>";
+
+
 }
 ?>

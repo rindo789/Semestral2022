@@ -23,20 +23,8 @@ loginCheck();
         <a href="group.php">Skupiny</a>
         <a href="scoreTest.php">Hodnotenia</a>
     </div>
-
-    <p>si na stránke hodnotenia >:)</p>
-    <table>
-        <tr>
-            <th>ID žiaka</th>
-            <th>Meno žiaka</th>
-            <?php echo "<th colspan=".autoColspan($_GET["schedule"]).">Odpovede</th>" ?>
-            
-            <th>Body</th>
-            <th>Známka</th>
-        </tr>
         <?php
             scoreAllStudents($_GET["schedule"]);
         ?>
-    </table>
 </body>
 </html>

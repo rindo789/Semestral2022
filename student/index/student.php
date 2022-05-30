@@ -11,33 +11,35 @@ loginCheck();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/student.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <title>Študent/Testy/Hodnotenia</title>
 </head>
 <body>
+    <nav id="menu">
+        <a href="../../login/include/singout.inc.php">Odhlasiť sa</a>
+    </nav>
     <table>
-        <tr><th colspan="3">Dostupné testy</th></tr>
+        <tr><th colspan="4"  class="nadpis_tabulky">Dostupné testy</th></tr>
         <tr>
-            <th>Id</th>
-            <th>Nazov</th>
-            <th>Show</th>
+            <th>Názov testu</th>
+            <th>Dátum a čas začiatku</th>
+            <th></th>
         </tr>
         <?php
-        showTests();
+            showTests();
         ?>
     </table>
     <br>
     <table>
-        <tr><th colspan="3">Hodnotenia</th></tr>
+        <tr><th colspan="3"  class="nadpis_tabulky">Hodnotenia</th></tr>
         <tr>
-            <th>Id</th>
+            <th>Názov testu</th>
+            <th>Dátum a čas testu</th>
             <th>Show</th>
         </tr>
         <?php
-        showScores();
+            showScores();
         ?>
     </table>
-    <a href="../../login/include/singout.inc.php">Odhlásiť sa</a>
-    <a href="studentGame.php">Hra</a>
-    <a href='../include/game.inc.php?testId=45'>Ukáž</a></td>"
 </body>
 </html>

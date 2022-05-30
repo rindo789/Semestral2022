@@ -266,11 +266,11 @@ function formUser($userID){
     <p>Typ užívateľa sa nedá zmeniť</p>
     <br>
 
-    <input type='submit' value='Zmeniť' name='update'>
+    <input type='submit' value='Zmeniť' name='update' id='new_user_button'>
     </form>
-    <br><br>
+    <br>
     <form action='../include/manage_user_check.php?user_id=".$userID."' method='post' name='reset_pass'>
-    <input type='submit' for='reset_pass' name='pass' value='Reset heslo'>
+        <input type='submit' for='reset_pass' name='pass' value='Reset heslo' id='reset_button'>
     </form>
     ";
 

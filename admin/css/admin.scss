@@ -8,12 +8,16 @@
     font-family: 'Raleway', sans-serif;
     font-size: 20pt;
     background-color: #2168AA;
-    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: flex-end;
+
 
     a {
-        padding-left: 10%;
         color: white;
         text-decoration: none;
+        padding: 10px 20px;
     }
 
     a:visited {
@@ -21,8 +25,8 @@
     }
     
     a:hover {
-        text-decoration: underline;
-        color: grey;
+        font-weight: bold;
+        color: lightblue;
     }
 }
 
@@ -50,27 +54,34 @@
     }
 
 }
-.search_user {
-    margin-left: 20em;
-}
-table {
-    
+
+table{
+    margin: 0 auto;
     border-collapse: collapse;
+    margin-top: 5vh;
+    font-size: 18pt;
 
-    th, td, tr {
-        border: 2px black solid;
+    th {
+        background-color: lightgray;
+        padding: 10px 20px;
     }
 
-    th, td{
-        padding: 5px;
+    td {
+        padding: 10px 20px;
     }
 
-    /*tr:nth-child(even) {
-        background-color: rgb(196, 194, 194);
+    tr:nth-child(even){
+        background-color: rgb(226, 226, 226);
     }
-    tr:nth-child(odd) {
-        background-color: white;
-    }*/
+
+    a {
+        font-weight: bold;
+        color: #2168AA;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #55a1e7;
+    }
 }
 
 #add_user_form {
@@ -146,9 +157,9 @@ fieldset p {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     background-color: grey;
-    color: white;
     font-size: 14pt;
     text-align: center;
+    background-color: lightgrey;
 
     button {
         //border-radius: 20px;
@@ -176,30 +187,152 @@ fieldset p {
     }
 }
 
-#menu {
-    font-family: 'Raleway', sans-serif;
-    font-size: 20pt;
-    background-color: skyblue;
-    padding: 10px;
+#result_modal {
+    //display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: fit-content ;
 
-    a {
-        padding-left: 10%;
-        color: white;
-        text-decoration: none;
+    th,td,tr{
+        border: white solid 1px;
+        padding: 5px 20px;
     }
 
-    a:visited {
-        color: white;
+    thead{
+        font-weight: bold;
     }
+
+    .correct {
+        background-color: rgba(0, 128, 0, 0.448);
+      }
+      
+      .incorrect {
+        background-color: rgba(255, 0, 0, 0.448);
+      }
     
-    a:hover {
-        text-decoration: underline;
-        color: grey;
+
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    #close, table {
+        padding: 0;
+        margin: 0px 20px;
+    }
+
+    #close:hover {
+        cursor: pointer;
     }
 }
 
-#test_table{
-    button {
+#button_show_modal{
+    background: none;
+    border: none;
+    font-size: 18pt;
+    color: #2168AA;
+    font-weight: bold;
+}
+#button_show_modal:hover {
+    cursor: pointer;
+    color: #55a1e7;
+}
 
+#search_add_flex{
+    margin: 0 auto;
+    margin-top: 5vh;
+    padding: 0;
+    width: 55vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 16pt;
+
+    .search_bar, #search_bar, a {
+        button {
+            border-radius: 20px;
+            border-color: rgba(128, 128, 128, 0.301);
+            box-shadow: none;
+            width: 140px;
+            height: 60px;
+            background-color: white;
+            font-family: 'Raleway', sans-serif;
+            font-weight: bold;
+            font-size: 16pt;
+        }
+        button:hover {
+            cursor:pointer;
+            background-color: rgba(128, 128, 128, 0.301);
+        }
+    }
+
+    .search_bar, #search_bar{
+        input {
+            font-size: 16pt;
+        }
+        button {
+            height: 40px;
+        }
+
+    }
+
+    a {
+        button {
+            width: 180px;
+        }
+    }
+}
+
+#add_user_form, .user_edit {
+    margin: 0 auto;
+    width: fit-content;
+
+    font-size: 16pt;
+    h3 {
+        margin-top: 20px;
+    }
+
+    form {
+        margin: 0 auto;
+        width: fit-content;
+
+        input {
+            font-size: 14pt;
+        }
+
+        label {
+            margin-top: 20px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select, option {
+            font-size: 16pt;
+        }
+
+        #new_user_button, #reset_button {
+            margin: 0 auto;
+            margin-top: 20px;
+            border-radius: 20px;
+            border-color: rgb(49, 214, 63);
+            box-shadow: none;
+            width: 140px;
+            height: 60px;
+            background-color: white;
+            font-family: 'Raleway', sans-serif;
+            font-weight: bold;
+            font-size: 16pt;
+        }
+
+        #new_user_button:hover, #reset_button:hover {
+            cursor:pointer;
+            background-color: rgba(128, 128, 128, 0.301);
+        }
+
+        #reset_button {
+            border-color: rgba(128, 128, 128, 0.301);
+        }
     }
 }

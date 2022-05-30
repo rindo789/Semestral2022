@@ -12,15 +12,17 @@ loginCheck();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/harrystyles.css">
     <script src="../js/search_results.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body onload="searchResult();">
     <div id="result_modal">
-        <span id="close" onclick="closeModal();">X</span>
+        
         <table id="table_results">
             
         </table>
+        <span id="close" onclick="closeModal();">X</span>
     </div>
 
     <div id="menu">
@@ -34,10 +36,12 @@ loginCheck();
         <a href="manage_result.php">Manažér hodnotení</a>
     </div>
 
-    <div id="search_bar">
-        <label for="search_prompt">Vyhladaj hodnotenie</label> <br>
-        <input type="text" id="search_field" name="search_prompt" placeholder="Zadaj výraz na vyhľadanie">
-        <button onclick="searchResult();">Vyhladaj</button>
+    <div id="search_add_flex">
+        <div class="search_bar">
+            <h3>Vyhladaj hodnotenie</h3>
+            <input type="text" id="search_field" name="search_prompt" placeholder="Zadaj výraz na vyhľadanie">
+            <button onclick="searchResult();">Vyhladaj</button>
+        </div>
     </div>
     <br>
     <div id="test_table">
@@ -49,6 +53,8 @@ loginCheck();
                     <th>Meno študent</th>
                     <th>ID testu</th>
                     <th>ID naplánovania</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

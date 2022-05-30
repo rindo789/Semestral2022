@@ -14,6 +14,7 @@ loginCheck();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/harrystyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <title>Document</title>
 
     <script src="../js/search_user.js"></script>
@@ -32,16 +33,19 @@ loginCheck();
         <a href="manage_result.php">Manažér hodnotení</a>
     </div>
     
-    <a href="manage_userNew.php"><button>Vytvoriť užívateľa</button></a>
+    
 
     <div class="search_user">
-    <br><br>
-        <div class="search_bar">
-            <h3>Vyhladaj</h3>
-            <br>
-            <input type="text" id="user_name" placeholder="Zadaj meno užívateľa">
-            <input type="button" onclick="searchUser()" value="Hľadaj">
+        <div id="search_add_flex">
+            <div class="search_bar">
+                <h3>Vyhladaj užívateľov</h3>
+                <input type="text" id="user_name" placeholder="Zadaj meno užívateľa">
+                <button onclick="searchUser()">Hľadaj</button>
+            </div>
+
+            <a href="manage_userNew.php"><button>Vytvoriť užívateľa</button></a>
         </div>
+        
     <br>
     <?php
     if (isset($_SESSION["new_pass"])){
@@ -59,6 +63,8 @@ loginCheck();
                     <th>Manažér</th>
                     <th>Typ</th>
                     <th>ID Typ</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

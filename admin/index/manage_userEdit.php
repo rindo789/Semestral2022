@@ -14,6 +14,7 @@ loginCheck();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/harrystyles.css">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="../js/search_user.js"></script>
 </head>
@@ -31,11 +32,12 @@ loginCheck();
     </div>
 
     <div class="user_edit">
-    <div id="add_user_form">
-        <?php
-            echo formUser($_GET["user_id"]);
-        ?>
-    </div>
+        <h3>Editovanie užívateľa</h3>
+        <div id="add_user_form">
+            <?php
+                echo formUser($_GET["user_id"]);
+            ?>
+        </div>
     </div>
 </body>
 

@@ -65,10 +65,10 @@ foreach ($answerXML as $answer){
     $row["mark"] = (string)$answer->mark;
     foreach($answer->question as $question){
         $row["questions"][(int)$question["qId"]]["name"] = (string)$question->questionName;
+        $row["questions"][(int)$question["qId"]]["correct"] = (string)$question->score;
         $option_counter = 1;
         foreach ($question->option as $option){
             $row["questions"][(int)$question["qId"]]["answer".$option_counter] = (string)$option;
-            $row["questions"][(int)$question["qId"]]["correct"] = (string)$option->correct;
             $option_counter++;
         }
     }

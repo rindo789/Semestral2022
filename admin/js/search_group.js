@@ -1,5 +1,9 @@
-var x = document.getElementsByTagName("fieldset");
-var y = x.length;
+var y;
+function countFields() {
+    var x = document.getElementsByTagName("fieldset");
+    y = x.length - 1;
+    console.log(y);
+}
 function searchGroup() {
     var group_name = document.getElementById("group_name").value;
     var table = document.getElementById("group_table");
@@ -60,7 +64,7 @@ function addField() {
     delete_button.value = y;
     delete_button.type = "button";
     delete_button.innerText = "x";
-    document.getElementById("add_button").insertAdjacentElement("beforebegin", field);
+    document.getElementById("flex_buttons").insertAdjacentElement("beforebegin", field);
     field.insertAdjacentElement("beforeend", para);
     field.insertAdjacentElement("beforeend", student_id);
     field.insertAdjacentElement("beforeend", delete_button);

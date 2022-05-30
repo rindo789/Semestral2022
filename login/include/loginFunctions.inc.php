@@ -186,7 +186,7 @@ function checkUserType(){
         $row2 = $result2->fetch_assoc();
         CloseCon($conn);
         $_SESSION["AID"] = $row2["admin_id"];
-        header("location: ../../admin/index/index.php");
+        header("location: ../../admin/index/manage_user.php");
         exit();
     }
     else {

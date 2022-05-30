@@ -36,9 +36,10 @@ table {
 }
 table th {
   background-color: lightgray;
+  padding: 10px 20px;
 }
 table td {
-  padding: 10px;
+  padding: 10px 20px;
 }
 table tr:nth-child(even) {
   background-color: rgb(226, 226, 226);
@@ -220,6 +221,42 @@ fieldset {
 
 .incorrect {
   background-color: rgba(255, 0, 0, 0.448);
+}
+
+#group_form {
+  position: relative;
+  height: auto;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 70vw;
+  font-size: 16pt;
+}
+#group_form input {
+  font-size: 14pt;
+}
+#group_form #group_submit, #group_form #add_member, #group_form #add_button {
+  border-radius: 20px;
+  border-color: rgba(128, 128, 128, 0.301);
+  box-shadow: none;
+  width: 180px;
+  height: 60px;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 16pt;
+}
+#group_form #group_submit {
+  border-color: rgba(58, 235, 34, 0.815);
+}
+#group_form #group_submit:hover, #group_form #add_member:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.301);
+}
+#group_form #flex_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 /*# sourceMappingURL=harrystyles.css.map */

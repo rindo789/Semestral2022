@@ -54,18 +54,17 @@ function showTests(){
         //ak test skoncil tak ho neukazuj
         if ($row["koniec"]<$now) continue;
 
-        echo "<tr><td>".$row['id_test']."</td>
-        <td>".$row['nazov_testu']."</td>
-        <td>".$row["zaciatok"]."</td>";
+        echo "<tr><td>".$row['nazov_testu']."</td>
+        <td>".date("H:i:s d.m.Y", strtotime($row['zaciatok']))."</td>";
 
         //ak test ešte nazačal tak neukazul tlačidlo
         if ($row["zaciatok"]<$now){
             if ($row["test_type"] == "classic"){
-                echo "<td><a href='../include/takeTest.inc.php?testId=".$row['id_test']."&schedule=".$row["id_schedule"]."'>Ukáž</a></td>";
+                echo "<td><a href='../include/takeTest.inc.php?testId=".$row['id_test']."&schedule=".$row["id_schedule"]."'>Spusti test</a></td>";
             } else if ($row["test_type"] == "game"){
-                echo "<td><a href='../include/game.inc.php?testId=".$row['id_test']."&schedule=".$row["id_schedule"]."'>Ukáž</a></td>";
+                echo "<td><a href='../include/game.inc.php?testId=".$row['id_test']."&schedule=".$row["id_schedule"]."'>Spusti hru</a></td>";
             }
-        }
+        } else echo "<td></td>";
         echo "</tr>";
     }
     CloseCon($conn);
@@ -74,14 +73,21 @@ function showTests(){
 //hladanie vykonaných testov
 function showScores(){
     $conn = OpenCon();
-    $stmt = $conn->prepare("SELECT id_odp FROM odpoved WHERE id_student = ?");
+    $stmt = $conn->prepare("SELECT o.id_odp, s.zaciatok, t.nazov_testu, s.test_type, s.id_schedule FROM odpoved o 
+                            JOIN schedule s ON o.schedule_id = s.id_schedule
+                            JOIN testy t ON s.id_test = t.id_test
+                            WHERE o.id_student = ?");
     $stmt->bind_param("i", $_SESSION["SID"]);
     $stmt->execute();
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>".$row['id_odp']."</td>
-        <td><a href='../include/takeTest.inc.php?scoreId=".$row['id_odp']."'>Ukáž Hodnotenie</a></td>
-        </tr>";
+        echo "<tr>
+        <td>".$row["nazov_testu"]."</td>
+        <td>".date("H:i:s d.m.Y", strtotime($row['zaciatok']))."</td>";
+        if ($row["test_type"] == "classic"){
+            echo "<td><a href='../include/takeTest.inc.php?scoreId=".$row['id_odp']."'>Ukáž hodnotenie</a></td>";
+        } else echo "<td><a href='../include/takeTest.inc.php?scoreId=".$row['id_odp']."&type=game&schedule_id=".$row['id_schedule']."'>Ukáž hodnotenie hry</a></td>";        
+        echo "</tr>";
     }
     CloseCon($conn);
 }
@@ -108,22 +114,13 @@ function scoreTable(){
     {
         echo "<h1>".$name."</h1>";
     }
-    echo "<table>";
+    echo "<table id='student_score'>";
     echo "<tr>";
     echo "<th>Otázka</th>";
 
     $answerXML = $xml->xpath("//answer[@id=".$answerID."]/question");
-    //generuj tabulku podľa otázok v teste
-    foreach ($answerXML as $question)
-    {
-        echo "<th>".$question["qId"].". ".$question->questionName."</th>";
-    }
-    echo "<th>Celkovo</th>";
-    echo "</tr>";
-    echo "<tr>"; 
-    echo "<td>Odpoveď</td>";
-    //generuj tabulku podľa odpovedí študenta
     //tried odpovede
+
     $sort_qID = [];
     foreach ($answerXML as $question)
     {
@@ -131,22 +128,47 @@ function scoreTable(){
     }
     sort($sort_qID, SORT_NUMERIC);
 
-    //najdi otázky podla ID v XML a pretriedenom zozname
+    //generuj tabulku podľa otázok v teste
     foreach($sort_qID as $qID){
         $answerXML = $xml->xpath("//answer[@id=".$answerID."]/question[@qId=".$qID."]");
+        foreach ($answerXML as $question)
+        {
+            echo "<th>".$question["qId"].". ".$question->questionName."</th>";
+        }
+    }
+    
+    echo "<th>Celkovo</th>";
+    echo "<th>Známka</th>";
+    echo "</tr>";
+    echo "<tr>"; 
+    echo "<td>Odpoveď</td>";
+    
+    //generuj tabulku podľa odpovedí študenta
+    //najdi otázky podla ID v XML a pretriedenom zozname
+    foreach($sort_qID as $qID){
+        $answerXML = $xml->xpath("//answer[@id=".$answerID."]/question[@qId=".$qID."]");        
         
-        echo "<td>";
         //generuj aj viaceré odpovede ak bol typ checkbox
         foreach ($answerXML as $question){
+            if ($question->score > 0){
+                echo "<td class='correct'>";
+            } else {
+                echo "<td class='incorrect'>";
+            }
             foreach($question->option as $option){
-                echo $option." ".$option->correct;
+                if ($option == "/*empty*/"){
+                    echo " - ";
+                    continue;
+                }
+                echo $option;
                 echo "<br>";
             }            
         }
         echo "</td>";
 
     }
-    echo "<td></td>";
+    echo "<td></td>
+    <td></td>";
     echo "</tr>";
     echo "<tr>";
 

@@ -6,8 +6,8 @@ require_once "../../main/dbh.inc.php";
 function saveGame(){
 
     $conn = OpenCon();
-    $stmt = $conn->prepare("INSERT INTO game (test_id, student_id, score, answers, multiplier, full_time, short_time) VALUES (?,?,?,?,?,?,?)");
-    $stmt->bind_param("iiiiiii",$_SESSION["testIdToEdit"],$_SESSION["SID"], $_POST["score"],$_POST["good_answer"],$_POST["multiply"],$_POST["full_time"],$_POST["short_time"]);
+    $stmt = $conn->prepare("INSERT INTO game (test_id, schedule_id, student_id, score, answers, multiplier, full_time, short_time) VALUES (?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("iiiiiiii",$_SESSION["testIdToEdit"], $_SESSION["schedule"],$_SESSION["SID"], $_POST["score"],$_POST["good_answer"],$_POST["multiply"],$_POST["full_time"],$_POST["short_time"]);
     if (!$stmt->execute()){
         echo "niečo je zle";
     } else echo "sent data!";

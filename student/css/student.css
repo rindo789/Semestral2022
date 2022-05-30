@@ -1,80 +1,94 @@
-th, td {
-    border: solid 1px;
-    text-align: center;
+#new_test {
+  display: none;
 }
 
-#new_test {
-    display: none;
+#new_group {
+  display: none;
 }
-#new_group{
-    display: none;
+
+#students {
+  display: none;
 }
-#students{
-    display: none;
-}
+
 fieldset p {
-    display: inline;
+  display: inline;
 }
 
 * {
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
 }
 
-fieldset {
-    border-radius: 10px;
+h1 {
+  text-align: center;
+  margin-top: 60px;
 }
 
-#inside {
-    font-family: 'Raleway', sans-serif;
-    font-size: 20pt;
-    padding-left: 10%;
-    margin-right: 10%;
-}
-#inside h1 {
-    margin: 20px 0;
-}
 #menu {
-    font-family: 'Raleway', sans-serif;
-    font-size: 20pt;
-    background-color: skyblue;
-    padding: 10px;
+  font-family: "Raleway", sans-serif;
+  font-size: 20pt;
+  background-color: #2168AA;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 #menu a {
-    padding-left: 10%;
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
 }
 #menu a:visited {
-    color: white;
+  color: white;
 }
 #menu a:hover {
-    text-decoration: underline;
-    color: grey;
-}
-#inside button {
-    border-radius: 20px;
-    border-color: rgba(128, 128, 128, 0.301);
-    box-shadow: none;
-    width: 140px;
-    height: 60px;
-    background-color: white;
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    font-size: 12pt;
-
-}
-#inside button:hover {
-    cursor:pointer;
-    background-color: rgba(128, 128, 128, 0.301);
-}
-#inside #submit {
-    border-color: rgba(0, 248, 0, 0.342);
-    position: relative;
-    left: 62%;
-}
-#inside fieldset button {
-    height: 40px;
-    margin-top: 20px;
+  font-weight: bold;
+  color: lightblue;
 }
 
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: none;
+  margin-top: 5vh;
+  font-size: 18pt;
+  text-align: center;
+}
+table th {
+  background-color: lightgray;
+  padding: 10px 20px;
+}
+table .nadpis_tabulky {
+  background-color: rgb(185, 185, 185);
+}
+table td {
+  padding: 10px 20px;
+}
+table tr:nth-child(even) {
+  background-color: rgb(226, 226, 226);
+}
+table .table_id {
+  padding: 0px 30px;
+}
+table a {
+  font-weight: bold;
+  color: #2168AA;
+  text-decoration: none;
+}
+table a:hover {
+  color: #55a1e7;
+}
+
+#student_score {
+  overflow-x: scroll;
+}
+
+.correct {
+  background-color: rgba(0, 128, 0, 0.448);
+}
+
+.incorrect {
+  background-color: rgba(255, 0, 0, 0.448);
+}
+
+/*# sourceMappingURL=student.css.map */

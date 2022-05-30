@@ -23,11 +23,9 @@ loginCheck();
         <a href="group.php">Skupiny</a>
         <a href="scoreTest.php">Hodnotenia</a>
     </div>
-    <h1>Naplánované testy</h1>
+    <h1>Naplánované a ukončené testy</h1>
     <table>
         <tr>
-            <th>id plan</th>
-            <th>ID testu</th>
             <th>Nazov</th>
             <th>Datum a čas začatia</th>
             <th>Datum a čas ukončenia</th>

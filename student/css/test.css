@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+#menu {
+  font-family: "Raleway", sans-serif;
+  font-size: 20pt;
+  background-color: #2168AA;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+#menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+#menu a:visited {
+  color: white;
+}
+#menu a:hover {
+  font-weight: bold;
+  color: lightblue;
+}
+
+form {
+  font-size: 20pt;
+  height: auto;
+  width: 80vw;
+  margin: 0 auto;
+}
+form h2 {
+  text-align: center;
+  margin: 40px 0px;
+}
+form fieldset {
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 10px 20px;
+}
+form fieldset p {
+  display: inline;
+}
+form button {
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  border-color: rgba(0, 248, 0, 0.342);
+  box-shadow: none;
+  width: 140px;
+  height: 60px;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+}
+form button:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.301);
+}
+
+/*# sourceMappingURL=test.css.map */

@@ -33,22 +33,11 @@ loginCheck();
             <textarea name='opis' placeholder="opis" form="test_form"></textarea> <br>
             <button type="button" onclick="CreateQuestion('one')">Jeden výber</button>
             <button type="button" onclick="CreateQuestion('multi')">Vyber mnoho</button>
-            <button type="button" onclick="CreateQuestion('text')">Napis odpoved</button> <br>
-
+            <button type="button" onclick="CreateQuestion('text')">Napis odpoved</button>
             <!--<button type="button" id="counter" value="0" style="display: none;"></button>
             <button type="button" id="real_counter" value="0" style="display: none;"></button> -->
-            <button id="submitButton" type="submit" name="saveTest">submit</button>
+            <button id="submitButton" type="submit" name="saveTest">Ulož zmeny</button>
         <!--<p onclick="showSettings()">Nastavenia</p>-->
-        <fieldset id="settings">
-            <!--<p>Opakovateľný</p>
-            <input type="checkbox">-->
-            <br>
-            <p>Dátum a čas spustenia</p>
-            <input type="datetime-local" name="date_time_on">
-            <br><br>
-            <p>Dátum a čas ukončenia</p>
-            <input type="datetime-local" name="date_time_off">
-        </fieldset> 
     </form>
     </div>  
 </body>

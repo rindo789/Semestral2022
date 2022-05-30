@@ -1,0 +1,109 @@
+#new_test {
+    display: none;
+}
+#new_group{
+    display: none;
+}
+#students{
+    display: none;
+}
+fieldset p {
+    display: inline;
+}
+
+* {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 60px;
+}
+
+
+
+#menu {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+    background-color: #2168AA;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: flex-end;
+
+
+    a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+
+    a:visited {
+        color: white;
+    }
+    
+    a:hover {
+        font-weight: bold;
+        color: lightblue;
+    }
+}
+
+
+
+table{
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: none;
+
+    margin-top: 5vh;
+
+    font-size: 18pt;
+    text-align: center;
+
+    th {
+        background-color: lightgray;
+        padding: 10px 20px;
+    }
+
+    .nadpis_tabulky {
+        background-color: rgb(185, 185, 185);
+    }
+
+    td {
+        padding: 10px 20px;
+    }
+
+    tr:nth-child(even){
+        background-color: rgb(226, 226, 226);
+    }
+
+    .table_id {
+        padding: 0px 30px;
+    }
+    .table_name {
+       // padding: 0px 50px;
+    }
+
+    a {
+        font-weight: bold;
+        color: #2168AA;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #55a1e7;
+    }
+}
+
+#student_score {
+    overflow-x: scroll;
+}
+
+
+.correct {
+    background-color: rgba(0, 128, 0, 0.448);
+}
+.incorrect {
+    background-color: rgba(255, 0, 0, 0.448);
+}

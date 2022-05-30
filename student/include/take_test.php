@@ -54,7 +54,7 @@ function loadTestStudent($testID){
         $shuffled = RandTest($test);
 
         $returnString = $returnString.
-        "<p>".$test->description."</p>";
+        "<h2>".$test->name."</h2>";
 
         //vytvorenie otázky
         foreach ($shuffled["questions"] as $qNumber) {
