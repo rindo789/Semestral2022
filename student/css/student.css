@@ -30,13 +30,13 @@ h1 {
   background-color: #2168AA;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
 }
 #menu a {
   color: white;
   text-decoration: none;
   padding: 10px 20px;
+  justify-self: flex-end;
 }
 #menu a:visited {
   color: white;
@@ -44,6 +44,22 @@ h1 {
 #menu a:hover {
   font-weight: bold;
   color: lightblue;
+}
+#menu #type_number {
+  justify-self: flex-start;
+  align-self: center;
+  font-size: 12pt;
+  padding: 10px 20px;
+  color: white;
+  flex-grow: 1;
+}
+
+.scroll_table {
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 90%;
+  height: fit-content;
+  overflow-x: scroll;
 }
 
 table {
@@ -56,13 +72,13 @@ table {
 }
 table th {
   background-color: lightgray;
-  padding: 10px 20px;
+  padding: 5px;
 }
 table .nadpis_tabulky {
   background-color: rgb(185, 185, 185);
 }
 table td {
-  padding: 10px 20px;
+  padding: 5px;
 }
 table tr:nth-child(even) {
   background-color: rgb(226, 226, 226);
@@ -77,10 +93,6 @@ table a {
 }
 table a:hover {
   color: #55a1e7;
-}
-
-#student_score {
-  overflow-x: scroll;
 }
 
 .correct {

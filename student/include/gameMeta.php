@@ -24,4 +24,5 @@ function checkAvailible(){
 
     return (int)$row["latest"];
 }
+
 ?>

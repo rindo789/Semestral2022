@@ -18,6 +18,9 @@ loginCheck();
 </head>
 <body onload='gameLeaderboard();'>
     <nav id="menu">
+        <?php 
+            echo "<p id='type_number'>ID študenta: ".$_SESSION["SID"]."</p>"
+        ?>
         <a href="student.php">Domov</a>
         <a href="../../login/include/singout.inc.php">Odhlasiť sa</a>
     </nav>
@@ -25,6 +28,7 @@ loginCheck();
     <?php
         scoreTable();
     ?>
+
 
     <div id="game_leadeboard">
         <div id="score_container">
@@ -86,5 +90,9 @@ loginCheck();
             </div>
         </div>
     </div>
+
+    <?php
+    showMyScore();
+    ?>
 </body>
 </html>

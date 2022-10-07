@@ -151,18 +151,27 @@ fieldset {
   color: lightblue;
 }
 
+.scroll_table {
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 80%;
+  height: fit-content;
+  overflow-x: scroll;
+}
+
 .manage_bar {
   float: left;
   height: 94.6vh;
   width: 300px;
   background-color: #2168AA;
+  display: flex;
+  flex-direction: column;
 }
 .manage_bar a {
   background-color: white;
-  padding: 0.5em 0em;
-  margin: 1em 1em;
+  padding: 0.5em 0;
+  margin: 0.5em 1em;
   font-size: 18pt;
-  display: block;
   border-radius: 5em;
   text-align: center;
   text-decoration: none;
@@ -171,6 +180,18 @@ fieldset {
 .manage_bar a:hover {
   background-color: rgb(202, 202, 202);
   color: #55a1e7;
+}
+.manage_bar #type_number {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.manage_bar #type_number p {
+  display: inline;
+  color: lightgray;
+  text-align: center;
+  margin: 20px 0;
 }
 
 #inside {
@@ -213,6 +234,9 @@ fieldset {
 #inside fieldset button {
   height: 40px;
   margin-top: 20px;
+}
+#inside fieldset input[type=text] {
+  width: 50%;
 }
 
 .correct {

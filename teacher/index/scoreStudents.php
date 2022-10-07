@@ -22,6 +22,11 @@ loginCheck();
         <a href="teacher.php">Testy</a>
         <a href="group.php">Skupiny</a>
         <a href="scoreTest.php">Hodnotenia</a>
+        <div id="type_number">
+            <?php
+                echo "<p>ID učiteľa: ".$_SESSION["TID"]."</p>"
+            ?>
+        </div>
     </div>
         <?php
             scoreAllStudents($_GET["schedule"]);

@@ -13,16 +13,23 @@ function gameLeaderboard() {
     //pridaj score do správneho policka
     //prvý
     var placement = document.getElementById("first").children;
-    if (place_number > 0)
+    var participants = document.getElementById("participants").children;
+    if (place_number > 0) {
         placement[1].innerHTML = game_result["scoring"][0]["score"];
+        participants[1].innerHTML = game_result["scoring"][0]["name"];
+    }
     //druhý
     placement = document.getElementById("second").children;
-    if (place_number > 1)
+    if (place_number > 1) {
         placement[1].innerHTML = game_result["scoring"][1]["score"];
+        participants[0].innerHTML = game_result["scoring"][1]["name"];
+    }
     //tretí
     placement = document.getElementById("third").children;
-    if (place_number > 2)
+    if (place_number > 2) {
         placement[1].innerHTML = game_result["scoring"][2]["score"];
+        participants[2].innerHTML = game_result["scoring"][2]["name"];
+    }
     //načítaj tabulku ostatných hráčov
     placement = document.getElementById("other_participants").children;
     var table = placement.item(0);

@@ -25,13 +25,18 @@ loginCheck();
         <a href="teacher.php">Testy</a>
         <a href="group.php">Skupiny</a>
         <a href="scoreTest.php">Hodnotenia</a>
+        <div id="type_number">
+            <?php
+                echo "<p>ID učiteľa: ".$_SESSION["TID"]."</p>"
+            ?>
+        </div>
     </div>
     <table id="groups">
         <h1>Vaše skupiny</h1>
         <tr>
             <th>Nazov</th>
-            <th>Show</th>
-            <th>Delete</th>
+            <th></th>
+            <th></th>
         </tr>
         <?php
             showGroups();
