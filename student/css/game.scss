@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+#menu {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+    background-color: #2168AA;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: flex-end;
+
+
+    a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+
+    a:visited {
+        color: white;
+    }
+    
+    a:hover {
+        font-weight: bold;
+        color: lightblue;
+    }
+}
+button {
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    border-color: grey;
+    box-shadow: none;
+    width: 140px;
+    height: 60px;
+    background-color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 12pt;
+}
+button:hover {
+    cursor:pointer;
+    background-color: rgba(128, 128, 128, 0.301);
+}
+
+form {
+
+    button {
+        border-color: rgba(0, 248, 0, 0.342);
+    }
+}
+
+#score_flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#score, #multyplier {
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+#score {
+    color: #2168AA;
+}
+
+#multyplier {
+    color: rgba(0, 248, 0, 0.342);
+}
+
+#game_leadeboard {
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 10vh;
+
+    height: 60vh;
+    width: 80vw;
+
+    border: solid black 3px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    #score_container{
+        height: 60%;
+        width: 50%;
+
+        h1 {
+            margin: 20px auto;
+        }
+
+        #score {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-end;
+
+            #first, #second, #third {
+                p {
+                    color:#2168AA;
+                    text-align: center;
+                    width: 100%;
+                    background-color: white;
+                }
+            }
+
+            #first{
+                height: 100%;
+                width: 100px;
+                background-color: #2168AA;
+            }
+            #second{
+                height: 70%;
+                width: 100px;
+                background-color: #2168AA;
+            }
+            #third {
+                height: 50%;
+                width: 100px;
+                background-color: #2168AA;
+            }
+        }
+        #participants{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+
+            p {
+                font-weight: bold;
+                font-size: 12pt;
+                color: #2168AA;
+                flex-grow: 1;
+            }
+        }
+
+        #other_participants{
+            table{
+                width: 100%;
+                font-size: 18pt;
+                margin: 10px auto;
+                padding: 0;
+            }
+            tr:nth-child(even){
+                background-color: white;
+            }
+        }
+    }
+    
+    #other_meta{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        #multiplier {
+            background-color: rgb(226, 226, 226);
+        }
+        #right_asnwer {
+            background-color: rgb(238, 235, 235);
+        }
+        #timer {
+            background-color: rgb(226, 226, 226);
+        }
+        #timer_short {
+            background-color: rgb(238, 235, 235);
+        }
+    
+        #multiplier,#right_asnwer,#timer,#timer_short{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: center;
+            flex-grow: 1;
+
+            h1 {
+                margin: 0;
+                padding-bottom: 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            p {
+                font-size: 18pt;
+            }
+        }
+    }
+
+    
+}

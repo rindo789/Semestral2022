@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <group id="20">
+    <name>skupina10</name>
+    <students>
+      <student>24</student>
+    </students>
+  </group>
+  <group id="21">
+    <name>olk</name>
+    <students>
+      <student>24</student>
+    </students>
+  </group>
+</xml>

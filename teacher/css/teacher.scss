@@ -1,0 +1,307 @@
+th, td {
+    text-align: center;
+}
+
+#new_test {
+    display: none;
+}
+#new_group{
+    display: none;
+}
+#students{
+    display: none;
+}
+fieldset p {
+    display: inline;
+}
+
+* {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+//dovonska stránka
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+table{
+    margin: 0 auto;
+
+    border-collapse: collapse;
+
+    margin-top: 5vh;
+
+    font-size: 18pt;
+
+    th {
+        background-color: lightgray;
+        padding: 10px 20px;
+    }
+
+    td {
+        padding: 10px 20px;
+    }
+
+    tr:nth-child(even){
+        background-color: rgb(226, 226, 226);
+    }
+
+    .table_id {
+        padding: 0px 30px;
+    }
+    .table_name {
+       // padding: 0px 50px;
+    }
+
+    a {
+        font-weight: bold;
+        color: #2168AA;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #55a1e7;
+    }
+}
+
+
+#schedule_window {
+    position: fixed;
+    display: none;
+    height: auto;
+    width: 25em;
+    padding: 20px;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: grey;
+
+    color: white;
+
+    font-size: 16pt;
+    text-align: center;
+
+    button {
+        border-radius: 20px;
+        border-color: rgba(128, 128, 128, 0.301);
+        box-shadow: none;
+        width: 140px;
+        height: 40px;
+        background-color: white;
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 12pt;
+        margin: 10px;
+    }
+    button:hover {
+        cursor:pointer;
+        background-color: rgba(128, 128, 128, 0.301);
+    }
+
+    span {
+        right: 25px;
+        top: 15px;
+        margin: 5px;
+        position: absolute;
+        cursor: pointer;
+    }
+
+    #wrong_dates{
+        color: red;
+        font-weight: bold;
+        display: none;
+    }
+}
+
+#schedule_response {
+    position: fixed;
+    display: none;
+    top: 10%;
+    left: 35%;
+    height: 1em;
+    width: 25em;
+    padding: 20px;
+    z-index: 1;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-color: green;
+
+    border-radius: 1em;
+
+    color: white;
+
+    font-size: 16pt;
+    text-align: center;
+
+    #schedule_ok{
+        display: none;
+    }
+    #schedule_error{
+        display: none;
+    }
+}
+
+fieldset {
+    border-radius: 10px;
+}
+
+#menu {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+    background-color: #2168AA;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: flex-end;
+
+
+    a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+
+    a:visited {
+        color: white;
+    }
+    
+    a:hover {
+        font-weight: bold;
+        color: lightblue;
+    }
+}
+
+.manage_bar {
+    float: left;
+    height: 94.6vh;
+    width: 300px;
+    background-color: #2168AA;
+
+    a {
+        background-color: white;
+        padding: 0.5em 0em;
+        margin: 1em 1em;
+        font-size: 18pt;
+        display: block;
+        border-radius: 5em;
+        text-align: center;
+        text-decoration: none;
+        color: #2168AA;
+    }
+
+    a:hover {
+        background-color: rgb(202, 202, 202);
+        color: #55a1e7;
+    }
+
+}
+
+#inside {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+    padding-left: 10%;
+    margin-right: 10%;
+
+    h1 {
+        margin: 20px 0;
+    }
+
+    button {
+        border-radius: 20px;
+        border-color: rgba(128, 128, 128, 0.301);
+        box-shadow: none;
+        width: 140px;
+        height: 60px;
+        background-color: white;
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 12pt;
+    }
+    button:hover {
+        cursor:pointer;
+        background-color: rgba(128, 128, 128, 0.301);
+    }
+    
+    #flex_inside{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        #submit {
+            border-color: rgba(0, 248, 0, 0.342);
+            align-self: flex-end;
+        }
+
+        button {
+            padding: 0;
+            margin: 0;
+        }
+    }
+    
+    fieldset button {
+        height: 40px;
+        margin-top: 20px;
+    }
+}
+
+.correct {
+    background-color: rgba(0, 128, 0, 0.448);
+}
+.incorrect {
+    background-color: rgba(255, 0, 0, 0.448);
+}
+
+#group_form{
+    position: relative;
+    height: auto;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 70vw;
+
+    font-size: 16pt;
+
+    input {
+        font-size: 14pt;
+    }
+
+    #group_submit, #add_member, #add_button{
+        border-radius: 20px;
+        border-color: rgba(128, 128, 128, 0.301);
+        box-shadow: none;
+        width: 180px;
+        height: 60px;
+        background-color: white;
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 16pt;
+    }
+
+    #group_submit {
+        border-color: rgba(58, 235, 34, 0.815);
+    }
+
+    #group_submit:hover, #add_member:hover {
+        cursor:pointer;
+        background-color: rgba(128, 128, 128, 0.301);
+    }
+
+    #flex_buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+
+
+
+
+
+
+
+
