@@ -45,8 +45,8 @@ loginCheck();
                 <button type="button" onclick="CreateQuestion('multi')">Výber viac</button>
                 <button type="button" onclick="CreateQuestion('text')">Napíš odpoved</button>
                 <button type="submit" name="saveTest" id="submit">Ulož zmeny</button>
-                <button type="button" onclick="showSchedule('classic');">Spusti Klasic</button>
-                <button type="button" onclick="showSchedule('game');">Spusti Hru</button>
+                <button type="button" onclick="showSchedule('classic');">Naplánovať test</button>
+                <button type="button" onclick="showSchedule('game');">Naplánovať hru</button>
             </div>
 
             <?php

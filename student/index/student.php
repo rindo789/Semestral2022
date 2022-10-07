@@ -16,6 +16,9 @@ loginCheck();
 </head>
 <body>
     <nav id="menu">
+        <?php 
+            echo "<p id='type_number'>ID študenta: ".$_SESSION["SID"]."</p>"
+        ?>
         <a href="../../login/include/singout.inc.php">Odhlasiť sa</a>
     </nav>
     <table>

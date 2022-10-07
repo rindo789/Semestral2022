@@ -45,7 +45,7 @@ function showGroups(){
         echo "<tr>
         <td>".$row['group_name']."</td>
         <td><a href='../include/test_states.php?groupId=".$row['id_group']."&state=show'>Zobraz</a></td>
-        <td><a href='../include/test_states.php?groupId=".$row['id_group']."&state=delete'>Zmaž</a></td>
+        <td><a href='../include/test_states.php?groupId=".$row['id_group']."&state=delete'>Vymaž</a></td>
         </tr>";
     }
 }

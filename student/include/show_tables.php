@@ -196,4 +196,44 @@ function scoreTable(){
     echo "</tr>";
     echo "</table>";
 }
+
+
+function showMyScore(){
+    $conn = OpenCon();
+    $stmt = $conn->prepare("SELECT score, answers, multiplier, full_time, short_time FROM game
+                            WHERE schedule_id = ? AND student_id = ?  ORDER BY score LIMIT 1");
+    $stmt->bind_param("ii", $_SESSION["schedule"],$_SESSION["SID"]);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    echo "
+        <table id='your_score'>
+    <tr>
+        <th colspan=2>Vaše skóre</th>
+
+    </tr>
+    <tr>
+        <td>Skóre</td>
+        <td>".$row["score"]."</td>
+    </tr>
+    <tr>
+        <td>Správne odpovede</td>
+        <td>".$row["answers"]."</td>
+    </tr>
+    <tr>
+        <td>Násobiteľ</td>
+        <td>".$row["multiplier"]."</td>
+    </tr>
+    <tr>
+        <td>Čas dokončenia testu</td>
+        <td>".$row["full_time"]."</td>
+    </tr>
+    <tr>
+        <td>Najkratší čas odpovede</td>
+        <td>".$row["short_time"]."</td>
+    </tr>
+    </table>
+    ";
+}
 ?>
